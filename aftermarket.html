@@ -10,6 +10,14 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <style>
+    @media (max-width: 768px) {
+      .eco-stats, .eco-brands { grid-template-columns: 1fr 1fr !important; }
+    }
+    @media (max-width: 480px) {
+      .eco-brands { grid-template-columns: 1fr !important; }
+    }
+  </style>
 </head>
 <body>
 
@@ -80,33 +88,61 @@
     </div>
   </section>
 
-  <!-- Skelmore Holdings Context -->
+  <!-- Skelmore Holdings Ecosystem -->
   <section class="section-pad" style="background:var(--white);">
     <div class="container">
-      <div class="two-col" style="gap:48px;align-items:center;">
-        <div class="reveal">
-          <span class="label">BACKED BY SCALE</span>
-          <h2 class="section-heading">Part of the <span class="text-gold">Skelmore Holdings</span> Ecosystem</h2>
-          <p style="font-size:17px;color:var(--slate);font-weight:300;line-height:1.7;margin-top:20px;">WAG&rsquo;s aftermarket vertical sits within Skelmore Holdings &mdash; a diversified group with deep operational roots across the Middle East and Africa.</p>
+      <div style="text-align:center;max-width:720px;margin:0 auto;">
+        <span class="label reveal">SHARED ECOSYSTEM</span>
+        <h2 class="section-heading reveal">The <span class="text-gold">Skelmore Holdings</span> Ecosystem</h2>
+        <p style="font-size:17px;color:var(--slate);font-weight:300;line-height:1.7;margin-top:20px;" class="reveal">World Automotive Group operates within the Skelmore Holdings ecosystem &mdash; a diversified group spanning automotive, hospitality, and technology across the Middle East and Africa. This shared ecosystem gives WAG access to deep operational expertise in multi-site retail, supply chain management, and consumer experience at scale.</p>
+      </div>
+
+      <div class="eco-stats reveal reveal-delay-1" style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:48px;">
+        <div style="background:var(--pearl);padding:24px;border-radius:12px;text-align:center;">
+          <div style="font-family:var(--font-display);font-size:32px;font-weight:600;color:var(--coal);">$650M</div>
+          <div style="font-size:13px;color:var(--slate);font-weight:400;margin-top:4px;">Group Revenue</div>
         </div>
-        <div class="reveal reveal-delay-1">
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
-            <div style="background:var(--pearl);padding:24px;border-radius:12px;text-align:center;">
-              <div style="font-family:var(--font-display);font-size:32px;font-weight:600;color:var(--coal);">$650M</div>
-              <div style="font-size:13px;color:var(--slate);font-weight:400;margin-top:4px;">Group Revenue</div>
-            </div>
-            <div style="background:var(--pearl);padding:24px;border-radius:12px;text-align:center;">
-              <div style="font-family:var(--font-display);font-size:32px;font-weight:600;color:var(--coal);">4,000+</div>
-              <div style="font-size:13px;color:var(--slate);font-weight:400;margin-top:4px;">Team Members</div>
-            </div>
-            <div style="background:var(--pearl);padding:24px;border-radius:12px;text-align:center;">
-              <div style="font-family:var(--font-display);font-size:32px;font-weight:600;color:var(--coal);">3</div>
-              <div style="font-size:13px;color:var(--slate);font-weight:400;margin-top:4px;">Core Sectors</div>
-            </div>
-            <div style="background:var(--pearl);padding:24px;border-radius:12px;text-align:center;">
-              <div style="font-family:var(--font-display);font-size:32px;font-weight:600;color:var(--coal);">9</div>
-              <div style="font-size:13px;color:var(--slate);font-weight:400;margin-top:4px;">Countries</div>
-            </div>
+        <div style="background:var(--pearl);padding:24px;border-radius:12px;text-align:center;">
+          <div style="font-family:var(--font-display);font-size:32px;font-weight:600;color:var(--coal);">4,000+</div>
+          <div style="font-size:13px;color:var(--slate);font-weight:400;margin-top:4px;">Team Members</div>
+        </div>
+        <div style="background:var(--pearl);padding:24px;border-radius:12px;text-align:center;">
+          <div style="font-family:var(--font-display);font-size:32px;font-weight:600;color:var(--coal);">3</div>
+          <div style="font-size:13px;color:var(--slate);font-weight:400;margin-top:4px;">Core Sectors</div>
+        </div>
+        <div style="background:var(--pearl);padding:24px;border-radius:12px;text-align:center;">
+          <div style="font-family:var(--font-display);font-size:32px;font-weight:600;color:var(--coal);">9</div>
+          <div style="font-size:13px;color:var(--slate);font-weight:400;margin-top:4px;">Countries</div>
+        </div>
+      </div>
+
+      <!-- Hospitality Sector -->
+      <div style="margin-top:56px;">
+        <div style="text-align:center;margin-bottom:32px;">
+          <span class="label reveal">HOSPITALITY SECTOR</span>
+          <h3 class="reveal" style="font-family:var(--font-display);font-size:24px;font-weight:400;color:var(--coal);margin-top:8px;">From Gastronomy to QSR Solutions</h3>
+          <p style="font-size:15px;color:var(--slate);font-weight:300;line-height:1.7;max-width:600px;margin:12px auto 0;" class="reveal">Skelmore&rsquo;s hospitality arm brings proven expertise in multi-brand, multi-market food &amp; beverage operations &mdash; the same playbook WAG applies to aftermarket retail.</p>
+        </div>
+        <div class="eco-brands" style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px;">
+          <div class="card reveal" style="padding:28px;text-align:center;">
+            <div style="font-family:var(--font-display);font-size:18px;font-weight:500;color:var(--coal);margin-bottom:8px;">Roberto&rsquo;s</div>
+            <div style="font-size:12px;font-weight:600;color:var(--gold);letter-spacing:0.5px;margin-bottom:12px;">FINE &amp; CASUAL DINING</div>
+            <p style="font-size:14px;color:var(--slate);font-weight:300;line-height:1.6;">Italian gastronomy in Dubai, Amman, Doha, and Montenegro. Expanding to Riyadh, Morocco, and Egypt.</p>
+          </div>
+          <div class="card reveal reveal-delay-1" style="padding:28px;text-align:center;">
+            <div style="font-family:var(--font-display);font-size:18px;font-weight:500;color:var(--coal);margin-bottom:8px;">Krush Brands</div>
+            <div style="font-size:12px;font-weight:600;color:var(--gold);letter-spacing:0.5px;margin-bottom:12px;">QSR COMPANY</div>
+            <p style="font-size:14px;color:var(--slate);font-weight:300;line-height:1.6;">A food service company with several proprietary fast-food brands built for rapid multi-market scale.</p>
+          </div>
+          <div class="card reveal reveal-delay-2" style="padding:28px;text-align:center;">
+            <div style="font-family:var(--font-display);font-size:18px;font-weight:500;color:var(--coal);margin-bottom:8px;">Freedom Pizza</div>
+            <div style="font-size:12px;font-weight:600;color:var(--gold);letter-spacing:0.5px;margin-bottom:12px;">CULINARY EXCELLENCE</div>
+            <p style="font-size:14px;color:var(--slate);font-weight:300;line-height:1.6;">Commitment to culinary excellence in the QSR space, delivering a superior customer experience.</p>
+          </div>
+          <div class="card reveal reveal-delay-3" style="padding:28px;text-align:center;">
+            <div style="font-family:var(--font-display);font-size:18px;font-weight:500;color:var(--coal);margin-bottom:8px;">Locale App</div>
+            <div style="font-size:12px;font-weight:600;color:var(--gold);letter-spacing:0.5px;margin-bottom:12px;">B2C PLATFORM</div>
+            <p style="font-size:14px;color:var(--slate);font-weight:300;line-height:1.6;">Krush Brands&rsquo; own delivery app for fast food and convenience &mdash; live in Dubai, expanding to Saudi Arabia.</p>
           </div>
         </div>
       </div>
