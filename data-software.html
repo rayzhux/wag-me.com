@@ -14,6 +14,77 @@
 <style>
 /* ═══════ DATA & SOFTWARE PAGE STYLES ═══════ */
 
+/* Hero two-column layout */
+.page-hero { display: block !important; padding-top: 140px; }
+.page-hero .container { width: 100%; }
+.ds-hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 48px;
+  align-items: center;
+}
+.ds-hero-grid .page-hero-heading {
+  font-size: clamp(32px, 3.8vw, 56px);
+}
+.ds-hero-panel {
+  border: 1px solid rgba(192,154,83,0.2);
+  border-radius: 16px;
+  overflow: hidden;
+  background: rgba(11,18,21,0.6);
+  backdrop-filter: blur(8px);
+}
+.ds-hero-companies {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  background: rgba(192,154,83,0.1);
+}
+.ds-hero-company {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 24px;
+  background: rgba(11,18,21,0.7);
+}
+.ds-hero-company span {
+  font-size: 12px;
+  color: var(--silver);
+  font-weight: 400;
+  letter-spacing: 0.3px;
+}
+.ds-hero-stats-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1px;
+  background: rgba(192,154,83,0.15);
+  border-top: 1px solid rgba(192,154,83,0.15);
+}
+.ds-hero-stat {
+  padding: 20px 16px;
+  background: rgba(11,18,21,0.6);
+  text-align: center;
+}
+.ds-hero-stat-num {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--gold);
+}
+.ds-hero-stat-label {
+  font-size: 11px;
+  color: var(--silver);
+  font-weight: 400;
+  margin-top: 4px;
+  letter-spacing: 0.3px;
+}
+@media (max-width: 900px) {
+  .ds-hero-grid { grid-template-columns: 1fr; gap: 40px; }
+  .ds-hero-panel { max-width: 400px; }
+}
+@media (max-width: 480px) {
+  .ds-hero-panel { max-width: 100%; }
+}
+
 /* Company overview cards */
 .company-card {
   padding: clamp(28px, 3vw, 40px);
@@ -307,7 +378,7 @@
 <div class="nav-overlay" id="navOverlay"></div>
 
 <!-- ═══════ PAGE HERO ═══════ -->
-<section class="page-hero">
+<section class="page-hero" style="min-height:560px;">
   <div class="page-hero-grid"></div>
   <div class="container">
     <div class="page-hero-breadcrumb reveal">
@@ -317,9 +388,47 @@
       <span>&rsaquo;</span>
       <span>Data &amp; Software Solutions</span>
     </div>
-    <span class="label reveal reveal-delay-1">DATA &amp; SOFTWARE SOLUTIONS</span>
-    <h1 class="page-hero-heading reveal reveal-delay-2">The Intelligence Layer of the <em>Automotive Economy</em></h1>
-    <p class="page-hero-sub reveal reveal-delay-3">APIs, AI-driven analytics, dealer software, and claims platforms serving OEMs, dealers, insurers, financers, and government across the GCC.</p>
+    <div class="ds-hero-grid">
+      <div>
+        <span class="label reveal reveal-delay-1">DATA &amp; SOFTWARE SOLUTIONS</span>
+        <h1 class="page-hero-heading reveal reveal-delay-2">The Intelligence Layer of the <em>Automotive Economy</em></h1>
+        <p class="page-hero-sub reveal reveal-delay-3">APIs, AI-driven analytics, dealer software, and claims platforms serving OEMs, dealers, insurers, financers, and government across the GCC.</p>
+        <div class="reveal reveal-delay-3" style="display:flex;gap:16px;flex-wrap:wrap;margin-top:32px;">
+          <a href="contact.html" class="btn-primary">Partner With Us &rarr;</a>
+          <a href="#autodata" class="btn-secondary">Explore Companies &rarr;</a>
+        </div>
+      </div>
+      <div class="ds-hero-panel reveal reveal-delay-2">
+        <div class="ds-hero-companies">
+          <div class="ds-hero-company">
+            <img src="logos/autodata-logo-white.png" alt="AutoData" style="height:28px;" loading="lazy">
+            <span>Data &amp; Intelligence</span>
+          </div>
+          <div class="ds-hero-company">
+            <img src="logos/vicimus-logo-full.svg" alt="Vicimus" style="height:24px;" loading="lazy">
+            <span>Dealer Software</span>
+          </div>
+          <div class="ds-hero-company">
+            <img src="logos/axxion-logo.png" alt="Axxion" style="height:28px;" loading="lazy">
+            <span>Claims Platform</span>
+          </div>
+        </div>
+        <div class="ds-hero-stats-row">
+          <div class="ds-hero-stat">
+            <div class="ds-hero-stat-num">3</div>
+            <div class="ds-hero-stat-label">Companies</div>
+          </div>
+          <div class="ds-hero-stat">
+            <div class="ds-hero-stat-num">6</div>
+            <div class="ds-hero-stat-label">Products</div>
+          </div>
+          <div class="ds-hero-stat">
+            <div class="ds-hero-stat-num">2</div>
+            <div class="ds-hero-stat-label">Continents</div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
