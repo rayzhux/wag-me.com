@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Venture Studio — World Automotive Group</title>
+<meta name="description" content="WAG's Venture Studio launches and scales new businesses at the intersection of automotive, data, AI, and financial services across the Middle East and Africa.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+
+<style>
+/* ═══════ VENTURE STUDIO PAGE STYLES ═══════ */
+
+/* Why section text */
+.vs-why-text p {
+  font-size: 16px;
+  color: var(--slate);
+  font-weight: 300;
+  line-height: 1.8;
+  margin-bottom: 16px;
+}
+
+/* Provide cards (dark bg) */
+.provide-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+@media (max-width: 900px) {
+  .provide-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+  .provide-grid { grid-template-columns: 1fr; }
+}
+
+.provide-card {
+  padding: clamp(28px, 3vw, 36px);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(192, 154, 83, 0.1);
+  border-radius: 8px;
+  transition: border-color 0.3s, background 0.3s, transform 0.3s;
+}
+.provide-card:hover {
+  border-color: rgba(192, 154, 83, 0.25);
+  background: rgba(255, 255, 255, 0.05);
+  transform: translateY(-2px);
+}
+.provide-card-icon {
+  width: 48px; height: 48px;
+  border-radius: 10px;
+  background: rgba(192, 154, 83, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+.provide-card h3 {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--white);
+  margin-bottom: 10px;
+}
+.provide-card p {
+  font-size: 14px;
+  color: var(--mist);
+  font-weight: 300;
+  line-height: 1.7;
+}
+
+/* Who cards */
+.who-card {
+  padding: clamp(28px, 3vw, 40px);
+  border: 1px solid var(--pearl);
+  border-radius: 8px;
+  transition: border-color 0.4s, box-shadow 0.4s, transform 0.3s;
+  position: relative;
+  overflow: hidden;
+  background: var(--white);
+}
+.who-card:hover {
+  border-color: var(--gold);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.04);
+  transform: translateY(-4px);
+}
+.who-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s var(--ease-out);
+}
+.who-card:hover::before { transform: scaleX(1); }
+.who-card-icon {
+  width: 52px; height: 52px;
+  border-radius: 10px;
+  background: rgba(192, 154, 83, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+.who-card h3 {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--coal);
+  margin-bottom: 10px;
+}
+.who-card p {
+  font-size: 14px;
+  color: var(--slate);
+  font-weight: 300;
+  line-height: 1.7;
+}
+
+/* Interest pills */
+.interest-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 20px;
+  justify-content: center;
+}
+.interest-pill {
+  display: inline-block;
+  font-size: 14px;
+  padding: 10px 24px;
+  background: var(--white);
+  border: 1px solid var(--pearl);
+  border-radius: 100px;
+  color: var(--coal);
+  font-weight: 400;
+  transition: border-color 0.3s, background 0.3s, transform 0.2s;
+}
+.interest-pill:hover {
+  border-color: var(--gold);
+  background: rgba(192, 154, 83, 0.06);
+  transform: translateY(-2px);
+}
+
+/* Process steps */
+.process-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  position: relative;
+}
+@media (max-width: 900px) {
+  .process-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  .process-grid { grid-template-columns: 1fr; }
+}
+
+.process-step {
+  position: relative;
+  padding: 32px 28px;
+  border: 1px solid var(--pearl);
+  border-radius: 8px;
+  background: var(--white);
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+.process-step:hover {
+  border-color: rgba(192, 154, 83, 0.3);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+}
+.process-num {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: rgba(192, 154, 83, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 15px;
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+.process-step h4 {
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 400;
+  color: var(--coal);
+  margin-bottom: 8px;
+}
+.process-step p {
+  font-size: 13px;
+  color: var(--slate);
+  font-weight: 300;
+  line-height: 1.6;
+}
+
+/* CTA Section */
+.cta-section {
+  text-align: center;
+  padding: clamp(80px, 10vh, 120px) 0;
+  position: relative;
+  overflow: hidden;
+}
+.cta-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(192, 154, 83, 0.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+.cta-heading {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 3.5vw, 44px);
+  font-weight: 400;
+  color: var(--white);
+  margin-bottom: 16px;
+  position: relative;
+}
+.cta-sub {
+  font-size: 17px;
+  color: var(--silver);
+  font-weight: 300;
+  margin-bottom: 32px;
+  position: relative;
+}
+.cta-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  position: relative;
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════ NAVIGATION ═══════ -->
+<div class="scroll-progress" id="scrollProgress"></div>
+<nav class="nav scrolled" id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="wag-logo.svg" alt="World Automotive Group" class="nav-logo-img">
+    </a>
+    <button class="nav-toggle" id="navToggle"><span></span><span></span><span></span></button>
+    <div class="nav-links" id="navLinks">
+      <a href="about.html">About</a>
+      <a href="aftermarket.html">Aftermarket</a>
+      <a href="data-software.html">Data &amp; Software</a>
+      <a href="presence.html">Presence</a>
+      <a href="leadership.html">Leadership</a>
+      <a href="venture-studio.html" class="active">Venture Studio</a>
+      <a href="contact.html" class="nav-cta">Partner With Us</a>
+    </div>
+  </div>
+</nav>
+<div class="nav-overlay" id="navOverlay"></div>
+
+<!-- ═══════ PAGE HERO ═══════ -->
+<section class="page-hero">
+  <div class="page-hero-grid"></div>
+  <div class="container">
+    <div class="page-hero-breadcrumb reveal">
+      <a href="index.html">Home</a>
+      <span>&rsaquo;</span>
+      <span>Venture Studio</span>
+    </div>
+    <span class="label reveal reveal-delay-1">VENTURE STUDIO</span>
+    <h1 class="page-hero-heading reveal reveal-delay-2">Build the Next Generation of <em>Automotive Businesses</em></h1>
+    <p class="page-hero-sub reveal reveal-delay-3">WAG's Venture Studio launches and scales new businesses at the intersection of automotive, data, AI, and financial services across the Middle East and Africa.</p>
+  </div>
+</section>
+
+<!-- ═══════ WHY A VENTURE STUDIO ═══════ -->
+<section class="bg-white section-pad">
+  <div class="container">
+    <div class="two-col">
+      <div class="reveal-left">
+        <span class="label">The Opportunity</span>
+        <h2 class="section-heading" style="font-size:clamp(28px,3.5vw,44px);">Why a <span class="text-gold">Venture Studio</span></h2>
+      </div>
+      <div class="vs-why-text reveal-right">
+        <p>The MENA automotive ecosystem is fragmented, largely offline, and underserved by technology. This is not a problem solved by one product &mdash; it is solved by building many businesses, fast, on shared infrastructure.</p>
+        <p>Building a new business and running a scaled business require fundamentally different management systems. The Venture Studio provides the former &mdash; the environment, resources, data, and capital to go from idea to product-market fit at speed.</p>
+        <p>Every venture benefits from WAG's existing data assets, customer relationships, physical network, and institutional capital &mdash; advantages that would take years and millions to replicate independently.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ WHAT WE PROVIDE ═══════ -->
+<section class="bg-coal section-pad">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:56px;">
+      <span class="label reveal">What We Provide</span>
+      <h2 class="section-heading text-white reveal reveal-delay-1">Founders Don't Start <span class="text-gold">From Zero</span></h2>
+      <p class="section-subhead reveal reveal-delay-2" style="color:var(--silver);margin-left:auto;margin-right:auto;">Every venture launches with access to WAG's full platform &mdash; data, customers, infrastructure, and capital from day one.</p>
+    </div>
+    <div class="provide-grid">
+      <!-- Card 1 -->
+      <div class="provide-card reveal">
+        <div class="provide-card-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 3v18"/></svg>
+        </div>
+        <h3>Proprietary Data Assets</h3>
+        <p>AutoData &mdash; the GCC's leading automotive data provider. Vehicle identification, valuations, analytics, and AI-powered intelligence at your fingertips.</p>
+      </div>
+      <!-- Card 2 -->
+      <div class="provide-card reveal reveal-delay-1">
+        <div class="provide-card-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+        </div>
+        <h3>330,000+ Customer Relationships</h3>
+        <p>FastTrack and ExpressFit customers across the GCC &mdash; an existing distribution channel for new products and services from day one.</p>
+      </div>
+      <!-- Card 3 -->
+      <div class="provide-card reveal reveal-delay-2">
+        <div class="provide-card-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <h3>Physical Service Network</h3>
+        <p>32+ locations across the UAE, expanding to KSA, Egypt, and Morocco. Physical touchpoints for customer acquisition and service delivery.</p>
+      </div>
+      <!-- Card 4 -->
+      <div class="provide-card reveal reveal-delay-3">
+        <div class="provide-card-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        </div>
+        <h3>Technology &amp; AI Platform</h3>
+        <p>Shared APIs, data pipelines, and AI capabilities that accelerate development. Build on proven infrastructure instead of starting from scratch.</p>
+      </div>
+      <!-- Card 5 -->
+      <div class="provide-card reveal reveal-delay-4">
+        <div class="provide-card-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
+        </div>
+        <h3>Institutional Capital</h3>
+        <p>Ring-fenced budget, dedicated team, and operational backing. Capital deployed against evidence, not promises &mdash; stage-gated and milestone-driven.</p>
+      </div>
+      <!-- Card 6 -->
+      <div class="provide-card reveal reveal-delay-5">
+        <div class="provide-card-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+        </div>
+        <h3>Cross-Vertical Distribution</h3>
+        <p>Data, insurance, aftermarket, and fintech &mdash; launch into multiple verticals from a single platform with built-in cross-selling opportunities.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ WHO WE'RE LOOKING FOR ═══════ -->
+<section class="bg-white section-pad">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:56px;">
+      <span class="label reveal">Who We're Looking For</span>
+      <h2 class="section-heading reveal reveal-delay-1">Builders who want an <span class="text-gold">unfair advantage</span></h2>
+    </div>
+    <div class="three-col">
+      <div class="who-card reveal reveal-delay-1">
+        <div class="who-card-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </div>
+        <h3>Entrepreneurs &amp; Founders</h3>
+        <p>You have an automotive or mobility concept and are ready to build. You want access to data, customers, and capital that would take years to assemble on your own.</p>
+      </div>
+      <div class="who-card reveal reveal-delay-2">
+        <div class="who-card-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 3v9l6 3"/></svg>
+        </div>
+        <h3>Operators with Domain Expertise</h3>
+        <p>You know the automotive industry inside out and are ready to build something new. You bring the expertise; we bring the infrastructure and capital to scale.</p>
+      </div>
+      <div class="who-card reveal reveal-delay-3">
+        <div class="who-card-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        </div>
+        <h3>Small Teams &amp; Early-Stage Products</h3>
+        <p>You have a product or prototype and need scale. WAG can absorb and accelerate early-stage products through its platform, customers, and distribution network.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ AREAS OF INTEREST ═══════ -->
+<section class="bg-pearl section-pad">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:40px;">
+      <span class="label reveal">Areas of Interest</span>
+      <h2 class="section-heading reveal reveal-delay-1">Where we see <span class="text-gold">opportunity</span></h2>
+    </div>
+    <div style="text-align:center;" class="reveal reveal-delay-2">
+      <div class="interest-pills">
+        <span class="interest-pill">Automotive Fintech</span>
+        <span class="interest-pill">Aftermarket Digital Services</span>
+        <span class="interest-pill">Data &amp; AI Products</span>
+        <span class="interest-pill">Mobility &amp; EV Services</span>
+        <span class="interest-pill">Certification &amp; Compliance</span>
+      </div>
+      <p style="font-size:14px;color:var(--slate);font-weight:300;font-style:italic;margin-top:16px;">Not limited to this list &mdash; if you see an opportunity at the intersection of automotive and technology, we want to hear it.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ HOW IT WORKS ═══════ -->
+<section class="bg-white section-pad">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:56px;">
+      <span class="label reveal">How It Works</span>
+      <h2 class="section-heading reveal reveal-delay-1">From idea to <span class="text-gold">independent business</span></h2>
+    </div>
+    <div class="process-grid">
+      <div class="process-step reveal reveal-delay-1">
+        <div class="process-num">1</div>
+        <h4>You Own It</h4>
+        <p>Founders retain ownership and drive the vision. WAG provides the platform, not the playbook. You build the business your way, with our infrastructure behind you.</p>
+      </div>
+      <div class="process-step reveal reveal-delay-2">
+        <div class="process-num">2</div>
+        <h4>Stage-Gated, Evidence-Driven</h4>
+        <p>Progress through clear milestones. Each stage is defined by evidence of customer demand, product-market fit, and unit economics &mdash; not promises or projections.</p>
+      </div>
+      <div class="process-step reveal reveal-delay-3">
+        <div class="process-num">3</div>
+        <h4>More Evidence = More Resources</h4>
+        <p>Capital, team, and platform access scale with demonstrated traction. Prove demand and we invest more. Clear gates prevent waste and ensure focus.</p>
+      </div>
+      <div class="process-step reveal reveal-delay-4">
+        <div class="process-num">4</div>
+        <h4>Graduate to Full WAG Business</h4>
+        <p>Successful ventures graduate into standalone WAG businesses with their own P&amp;L, leadership team, and operational independence within the WAG ecosystem.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ CTA ═══════ -->
+<section class="bg-coal cta-section">
+  <div class="deco-line"></div>
+  <div class="container" style="position:relative;z-index:1;">
+    <div class="gold-line reveal" style="margin:0 auto 20px;"></div>
+    <h2 class="cta-heading reveal reveal-delay-1">Have an Idea? Let's Build It.</h2>
+    <p class="cta-sub reveal reveal-delay-2">Whether you're a founder, operator, or early-stage team &mdash; if you see an opportunity at the intersection of automotive and technology, we want to talk.</p>
+    <div class="cta-links reveal reveal-delay-3">
+      <a href="contact.html" class="btn-primary">
+        Get in Touch
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="mailto:ventures@wag-me.com" class="btn-secondary">
+        ventures@wag-me.com
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ FOOTER ═══════ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <img src="wag-logo.svg" alt="World Automotive Group" class="footer-logo-img">
+        <div class="footer-brand-name">World Automotive Group</div>
+        <div class="footer-brand-sub">Technology-Driven Automotive Platform</div>
+        <div class="footer-address">
+          Suite 203, Floor 11, Al Sarab Tower<br>ADGM Square, Abu Dhabi, UAE
+        </div>
+        <div class="footer-address">
+          <a href="https://maps.google.com/?q=Al+Sarab+Tower+ADGM+Square+Abu+Dhabi" target="_blank" rel="noopener">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            View on Google Maps
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Company</div>
+        <a href="about.html">About WAG</a>
+        <a href="leadership.html">Leadership</a>
+        <a href="presence.html">Global Presence</a>
+        <a href="venture-studio.html">Venture Studio</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Solutions</div>
+        <a href="aftermarket.html">Aftermarket</a>
+        <a href="data-software.html">Data &amp; Software</a>
+        <a href="fintech.html">FinTech</a>
+        <a href="knowledge-management.html">Consulting</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">&copy; 2026 World Automotive Group International Holdings Ltd. ADGM No. 31285</span>
+      <span class="footer-legal-links">
+        <a href="terms.html">Terms</a>
+        <a href="privacy.html">Privacy</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

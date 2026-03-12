@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Data &amp; Software — World Automotive Group</title>
+<meta name="description" content="APIs, AI-driven analytics, dealer software, and claims platforms serving OEMs, dealers, insurers, financers, and government across the GCC.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+
+<style>
+/* ═══════ DATA & SOFTWARE PAGE STYLES ═══════ */
+
+/* Company overview cards */
+.company-card {
+  padding: clamp(28px, 3vw, 40px);
+  border: 1px solid var(--pearl);
+  border-radius: 8px;
+  transition: border-color 0.4s, box-shadow 0.4s, transform 0.3s;
+  position: relative;
+  overflow: hidden;
+  background: var(--white);
+}
+.company-card:hover {
+  border-color: var(--gold);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.04);
+  transform: translateY(-4px);
+}
+.company-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s var(--ease-out);
+}
+.company-card:hover::before { transform: scaleX(1); }
+
+.company-card h3 {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--coal);
+  margin-bottom: 8px;
+}
+.company-card .company-tagline {
+  font-size: 13px;
+  color: var(--gold-dark);
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  margin-bottom: 14px;
+}
+.company-card p {
+  font-size: 14px;
+  color: var(--slate);
+  font-weight: 300;
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
+.company-card .award-badge {
+  display: inline-block;
+  font-size: 11px;
+  padding: 5px 12px;
+  background: rgba(192, 154, 83, 0.08);
+  border-radius: 100px;
+  color: var(--gold-dark);
+  font-weight: 500;
+  margin-right: 6px;
+  margin-bottom: 6px;
+}
+
+/* Product cards on dark bg */
+.product-card-dark {
+  padding: clamp(24px, 2.5vw, 32px);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(192, 154, 83, 0.1);
+  border-radius: 8px;
+  transition: border-color 0.3s, background 0.3s, transform 0.3s;
+}
+.product-card-dark:hover {
+  border-color: rgba(192, 154, 83, 0.25);
+  background: rgba(255, 255, 255, 0.05);
+  transform: translateY(-2px);
+}
+.product-card-dark h4 {
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 400;
+  color: var(--white);
+  margin-bottom: 8px;
+}
+.product-card-dark p {
+  font-size: 13px;
+  color: var(--mist);
+  font-weight: 300;
+  line-height: 1.6;
+}
+
+/* Stats strip for Axxion */
+.stats-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: rgba(192, 154, 83, 0.1);
+  border: 1px solid rgba(192, 154, 83, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 48px;
+}
+.stats-strip .stat-cell {
+  padding: 28px 24px;
+  background: var(--white);
+  text-align: center;
+}
+.stats-strip .stat-num {
+  font-family: var(--font-display);
+  font-size: clamp(24px, 2.5vw, 36px);
+  font-weight: 300;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.stats-strip .stat-label {
+  font-size: 12px;
+  color: var(--slate);
+  font-weight: 400;
+  line-height: 1.4;
+}
+@media (max-width: 768px) {
+  .stats-strip { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* Feature list with checks */
+.check-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.check-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 14px;
+  color: var(--slate);
+  font-weight: 300;
+  line-height: 1.6;
+}
+.check-list li svg {
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+
+/* Compliance badges */
+.compliance-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 24px;
+}
+.compliance-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  padding: 6px 14px;
+  background: rgba(192, 154, 83, 0.06);
+  border: 1px solid var(--pearl);
+  border-radius: 100px;
+  color: var(--slate);
+  font-weight: 500;
+}
+
+/* Partnership logos text */
+.partner-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  align-items: center;
+  margin-top: 32px;
+  padding-top: 32px;
+  border-top: 1px solid rgba(192, 154, 83, 0.1);
+}
+.partner-item {
+  font-size: 13px;
+  color: var(--mist);
+  font-weight: 400;
+  padding: 8px 20px;
+  border: 1px solid rgba(192, 154, 83, 0.12);
+  border-radius: 6px;
+}
+
+/* Coverage tags */
+.coverage-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 20px;
+}
+.coverage-tag {
+  font-size: 12px;
+  padding: 5px 14px;
+  background: rgba(192, 154, 83, 0.1);
+  border-radius: 100px;
+  color: var(--gold-light);
+  font-weight: 500;
+}
+
+/* Product list for Vicimus */
+.product-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.product-list-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 20px 24px;
+  background: var(--white);
+  border: 1px solid var(--pearl);
+  border-radius: 8px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+.product-list-item:hover {
+  border-color: rgba(192, 154, 83, 0.3);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+}
+.product-list-item .pli-icon {
+  width: 40px; height: 40px;
+  border-radius: 8px;
+  background: rgba(192, 154, 83, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.product-list-item h4 {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--coal);
+  margin-bottom: 4px;
+}
+.product-list-item p {
+  font-size: 13px;
+  color: var(--slate);
+  font-weight: 300;
+  line-height: 1.6;
+}
+
+/* CTA Section */
+.cta-section {
+  text-align: center;
+  padding: clamp(80px, 10vh, 120px) 0;
+  position: relative;
+  overflow: hidden;
+}
+.cta-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(192, 154, 83, 0.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+.cta-heading {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 3.5vw, 44px);
+  font-weight: 400;
+  color: var(--white);
+  margin-bottom: 16px;
+  position: relative;
+}
+.cta-sub {
+  font-size: 17px;
+  color: var(--silver);
+  font-weight: 300;
+  margin-bottom: 32px;
+  position: relative;
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════ NAVIGATION ═══════ -->
+<div class="scroll-progress" id="scrollProgress"></div>
+<nav class="nav scrolled" id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="wag-logo.svg" alt="World Automotive Group" class="nav-logo-img">
+    </a>
+    <button class="nav-toggle" id="navToggle"><span></span><span></span><span></span></button>
+    <div class="nav-links" id="navLinks">
+      <a href="about.html">About</a>
+      <a href="aftermarket.html">Aftermarket</a>
+      <a href="data-software.html" class="active">Data &amp; Software</a>
+      <a href="presence.html">Presence</a>
+      <a href="leadership.html">Leadership</a>
+      <a href="venture-studio.html">Venture Studio</a>
+      <a href="contact.html" class="nav-cta">Partner With Us</a>
+    </div>
+  </div>
+</nav>
+<div class="nav-overlay" id="navOverlay"></div>
+
+<!-- ═══════ PAGE HERO ═══════ -->
+<section class="page-hero">
+  <div class="page-hero-grid"></div>
+  <div class="container">
+    <div class="page-hero-breadcrumb reveal">
+      <a href="index.html">Home</a>
+      <span>&rsaquo;</span>
+      <span>Solutions</span>
+      <span>&rsaquo;</span>
+      <span>Data &amp; Software</span>
+    </div>
+    <span class="label reveal reveal-delay-1">DATA &amp; SOFTWARE SOLUTIONS</span>
+    <h1 class="page-hero-heading reveal reveal-delay-2">The Intelligence Layer of the <em>Automotive Economy</em></h1>
+    <p class="page-hero-sub reveal reveal-delay-3">APIs, AI-driven analytics, dealer software, and claims platforms serving OEMs, dealers, insurers, financers, and government across the GCC.</p>
+  </div>
+</section>
+
+<!-- ═══════ THREE COMPANIES OVERVIEW ═══════ -->
+<section class="bg-white section-pad">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:56px;">
+      <span class="label reveal">Our Companies</span>
+      <h2 class="section-heading reveal reveal-delay-1">Three companies, <span class="text-gold">one intelligence platform</span></h2>
+      <p class="section-subhead reveal reveal-delay-2" style="margin-left:auto;margin-right:auto;">Data, software, and claims infrastructure powering the automotive economy across the GCC and North America.</p>
+    </div>
+    <div class="three-col">
+      <!-- AutoData ME -->
+      <div class="company-card reveal reveal-delay-1">
+        <div style="margin-bottom:20px;">
+          <img src="logos/autodata-logo.png" alt="AutoData" style="height:40px;" loading="lazy">
+        </div>
+        <h3>AutoData ME</h3>
+        <div class="company-tagline">GCC's Leading Automotive Data Provider</div>
+        <p>Vehicle identification, valuations, analytics, and AI-powered intelligence serving OEMs, dealers, insurers, financers, and government entities.</p>
+        <div>
+          <span class="award-badge">Best AI-Powered Automotive Valuation Platform 2025</span>
+          <span class="award-badge">Best Data Intelligence Solution for Automotive Financing 2025</span>
+        </div>
+        <div style="margin-top:16px;display:flex;gap:16px;align-items:center;flex-wrap:wrap;">
+          <a href="#autodata" class="btn-arrow">Learn more <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="https://autodatame.com" target="_blank" rel="noopener" style="font-size:13px;color:var(--slate);font-weight:400;text-decoration:none;display:inline-flex;align-items:center;gap:4px;transition:color 0.3s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--slate)'">Visit Website <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+        </div>
+      </div>
+      <!-- Vicimus -->
+      <div class="company-card reveal reveal-delay-2">
+        <div style="margin-bottom:20px;">
+          <img src="logos/vicimus-logo-dark.svg" alt="Vicimus" style="height:40px;" loading="lazy">
+        </div>
+        <h3>Vicimus</h3>
+        <div class="company-tagline">Automotive Tech Solutions for Dealerships</div>
+        <p>Driving success for dealerships through customer lifecycle management, digital retail, and inventory intelligence. Preferred provider for Stellantis, Toyota, and GM in Canada.</p>
+        <div style="margin-top:16px;display:flex;gap:16px;align-items:center;flex-wrap:wrap;">
+          <a href="#vicimus" class="btn-arrow">Learn more <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="https://vicimus.com" target="_blank" rel="noopener" style="font-size:13px;color:var(--slate);font-weight:400;text-decoration:none;display:inline-flex;align-items:center;gap:4px;transition:color 0.3s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--slate)'">Visit Website <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+        </div>
+      </div>
+      <!-- Axxion -->
+      <div class="company-card reveal reveal-delay-3">
+        <div style="margin-bottom:20px;">
+          <img src="logos/axxion-logo.png" alt="Axxion" style="height:40px;" loading="lazy">
+        </div>
+        <h3>Axxion</h3>
+        <div class="company-tagline">Institutional-Grade Motor Claims Management</div>
+        <p>Compliance-by-design claims operating system with full audit trails and AI-driven process discipline &mdash; delivering 7&ndash;10% claims cost reduction and 50% operational efficiency improvement for insurers.</p>
+        <div style="margin-top:16px;display:flex;gap:16px;align-items:center;flex-wrap:wrap;">
+          <a href="#axxion" class="btn-arrow">Learn more <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="https://axxion.co" target="_blank" rel="noopener" style="font-size:13px;color:var(--slate);font-weight:400;text-decoration:none;display:inline-flex;align-items:center;gap:4px;transition:color 0.3s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--slate)'">Visit Website <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ AUTODATA DEEP DIVE ═══════ -->
+<section class="bg-coal section-pad" id="autodata">
+  <div class="container">
+    <span class="label reveal">AUTODATA MIDDLE EAST</span>
+    <h2 class="section-heading text-white reveal reveal-delay-1" style="max-width:700px;">AI-Powered <span class="text-gold">Automotive Intelligence</span></h2>
+    <p class="section-subhead reveal reveal-delay-2" style="color:var(--silver);margin-bottom:48px;">The GCC's most comprehensive automotive data platform &mdash; vehicle identification, valuations, analytics, and AI-powered intelligence for every stakeholder in the automotive economy.</p>
+
+    <div class="feature-grid" style="margin-bottom:40px;">
+      <div class="product-card-dark reveal">
+        <h4>ADWS &mdash; API Web Services</h4>
+        <p>RESTful APIs delivering real-time vehicle identification, specifications, and valuation data. Integrate automotive intelligence directly into your platform.</p>
+      </div>
+      <div class="product-card-dark reveal reveal-delay-1">
+        <h4>AutoData Analytics</h4>
+        <p>AI-powered analytics platform providing market trends, pricing intelligence, and predictive insights for OEMs, dealers, and financial institutions.</p>
+      </div>
+      <div class="product-card-dark reveal reveal-delay-2">
+        <h4>DealRevs</h4>
+        <p>Dealer inventory optimization system that maximizes turn rates, improves pricing accuracy, and drives higher gross margins across the lot.</p>
+      </div>
+      <div class="product-card-dark reveal reveal-delay-3">
+        <h4>Carantee</h4>
+        <p>End-to-end warranty management software for dealers and OEMs &mdash; claims processing, policy administration, and compliance tracking in one platform.</p>
+      </div>
+      <div class="product-card-dark reveal reveal-delay-4">
+        <h4>CVS &mdash; Vehicle Appraisals</h4>
+        <p>Digital vehicle appraisal and condition reporting for trade-ins, fleet management, and insurance assessments with standardized grading.</p>
+      </div>
+      <div class="product-card-dark reveal reveal-delay-5">
+        <h4>Vehicle Report</h4>
+        <p>Comprehensive vehicle history reports covering accident records, service history, ownership changes, and recall status across the GCC.</p>
+      </div>
+    </div>
+
+    <!-- Data Partnerships -->
+    <div class="partner-row reveal">
+      <span style="font-size:12px;color:var(--gold);font-weight:500;letter-spacing:1.5px;text-transform:uppercase;">Data Partners</span>
+      <span class="partner-item">JATO Dynamics</span>
+      <span class="partner-item">CARFAX</span>
+      <span class="partner-item">Emirates Vehicle Gate</span>
+    </div>
+
+    <!-- Coverage -->
+    <div style="margin-top:24px;" class="reveal">
+      <span style="font-size:12px;color:var(--mist);font-weight:400;margin-right:12px;">Coverage:</span>
+      <div class="coverage-row" style="display:inline-flex;">
+        <span class="coverage-tag">UAE</span>
+        <span class="coverage-tag">KSA</span>
+        <span class="coverage-tag">Oman</span>
+        <span class="coverage-tag" style="background:rgba(192,154,83,0.05);border:1px dashed rgba(192,154,83,0.2);">Expanding</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ AXXION DEEP DIVE ═══════ -->
+<section class="bg-white section-pad" id="axxion">
+  <div class="container">
+    <span class="label reveal">AXXION INSURANCE SERVICES</span>
+    <h2 class="section-heading reveal reveal-delay-1" style="max-width:600px;">Claims <span class="text-gold">Operating System</span></h2>
+    <p class="section-subhead reveal reveal-delay-2" style="margin-bottom:48px;">Institutional-grade motor claims management with compliance by design &mdash; built by operators with 40+ years in UAE motor insurance.</p>
+
+    <!-- Stats Strip -->
+    <div class="stats-strip reveal-scale">
+      <div class="stat-cell">
+        <div class="stat-num">50%</div>
+        <div class="stat-label">Operational Efficiency Improvement</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">7&ndash;10%</div>
+        <div class="stat-label">Claims Cost Reduction</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">3&ndash;10 days</div>
+        <div class="stat-label">Cycle Time (vs 15 industry avg)</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">NPS 75</div>
+        <div class="stat-label">Customer Satisfaction (from 55)</div>
+      </div>
+    </div>
+
+    <!-- Two column: Features + Compliance -->
+    <div class="two-col">
+      <div class="reveal-left">
+        <h3 style="font-family:var(--font-display);font-size:22px;font-weight:400;color:var(--coal);margin-bottom:24px;">Key Capabilities</h3>
+        <ul class="check-list">
+          <li>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+            176-point FNOL registration for comprehensive first notice of loss
+          </li>
+          <li>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+            7 compliance gates ensuring regulatory adherence at every stage
+          </li>
+          <li>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+            AI-powered damage estimation for faster, more accurate assessments
+          </li>
+          <li>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+            Advanced fraud detection using pattern analysis and anomaly scoring
+          </li>
+          <li>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+            51 assessed workshops across 5 UAE emirates
+          </li>
+        </ul>
+      </div>
+      <div class="reveal-right">
+        <h3 style="font-family:var(--font-display);font-size:22px;font-weight:400;color:var(--coal);margin-bottom:24px;">Compliance &amp; Certifications</h3>
+        <p style="font-size:15px;color:var(--slate);font-weight:300;line-height:1.7;margin-bottom:20px;">Axxion operates to the highest standards of information security, quality management, and regulatory compliance in the UAE insurance market.</p>
+        <div class="compliance-row">
+          <span class="compliance-badge">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            SOC 2 Type II
+          </span>
+          <span class="compliance-badge">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            ISO 27001
+          </span>
+          <span class="compliance-badge">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            ISO 9001
+          </span>
+          <span class="compliance-badge">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            CBUAE Aligned
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ VICIMUS SECTION ═══════ -->
+<section class="bg-pearl section-pad" id="vicimus">
+  <div class="container">
+    <div class="two-col">
+      <div class="reveal-left">
+        <span class="label">VICIMUS</span>
+        <h2 class="section-heading" style="font-size:clamp(28px,3.5vw,44px);">Automotive Tech <span class="text-gold">Solutions</span></h2>
+        <p style="font-size:16px;color:var(--slate);font-weight:300;line-height:1.8;margin-bottom:20px;">Vicimus builds technology that drives success for dealerships &mdash; from customer acquisition through retention. Preferred provider for Stellantis, Toyota, and GM in Canada.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:20px;">
+          <span class="tag">Stellantis</span>
+          <span class="tag">Toyota</span>
+          <span class="tag">GM Canada</span>
+        </div>
+      </div>
+      <div class="reveal-right">
+        <div class="product-list">
+          <div class="product-list-item">
+            <div class="pli-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+            </div>
+            <div>
+              <h4>Bumper Retention Lifecycle</h4>
+              <p>Full customer lifecycle management from first touchpoint through service retention and repurchase.</p>
+            </div>
+          </div>
+          <div class="product-list-item">
+            <div class="pli-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            </div>
+            <div>
+              <h4>Bumper BI</h4>
+              <p>Business intelligence dashboards providing real-time dealership performance analytics and insights.</p>
+            </div>
+          </div>
+          <div class="product-list-item">
+            <div class="pli-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 3v18"/></svg>
+            </div>
+            <div>
+              <h4>Bumper Inventory Ads</h4>
+              <p>Dynamic inventory advertising that automatically creates and optimizes digital ad campaigns from live inventory.</p>
+            </div>
+          </div>
+          <div class="product-list-item">
+            <div class="pli-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+            </div>
+            <div>
+              <h4>Glovebox Websites</h4>
+              <p>High-converting dealership websites with integrated inventory, lead capture, and digital retailing tools.</p>
+            </div>
+          </div>
+          <div class="product-list-item">
+            <div class="pli-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+            </div>
+            <div>
+              <h4>Odometer VoIP</h4>
+              <p>Cloud-based phone system built for dealerships with call tracking, recording, and CRM integration.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ CTA ═══════ -->
+<section class="bg-coal cta-section">
+  <div class="deco-line"></div>
+  <div class="container" style="position:relative;z-index:1;">
+    <div class="gold-line reveal" style="margin:0 auto 20px;"></div>
+    <h2 class="cta-heading reveal reveal-delay-1">Explore Our Data &amp; Software Solutions</h2>
+    <p class="cta-sub reveal reveal-delay-2">From automotive data APIs to claims management platforms &mdash; discover how WAG's intelligence layer can power your business.</p>
+    <div class="reveal reveal-delay-3">
+      <a href="contact.html" class="btn-primary">
+        Get in Touch
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ FOOTER ═══════ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <img src="wag-logo.svg" alt="World Automotive Group" class="footer-logo-img">
+        <div class="footer-brand-name">World Automotive Group</div>
+        <div class="footer-brand-sub">Technology-Driven Automotive Platform</div>
+        <div class="footer-address">
+          Suite 203, Floor 11, Al Sarab Tower<br>ADGM Square, Abu Dhabi, UAE
+        </div>
+        <div class="footer-address">
+          <a href="https://maps.google.com/?q=Al+Sarab+Tower+ADGM+Square+Abu+Dhabi" target="_blank" rel="noopener">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            View on Google Maps
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Company</div>
+        <a href="about.html">About WAG</a>
+        <a href="leadership.html">Leadership</a>
+        <a href="presence.html">Global Presence</a>
+        <a href="venture-studio.html">Venture Studio</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Solutions</div>
+        <a href="aftermarket.html">Aftermarket</a>
+        <a href="data-software.html">Data &amp; Software</a>
+        <a href="fintech.html">FinTech</a>
+        <a href="knowledge-management.html">Consulting</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">&copy; 2026 World Automotive Group International Holdings Ltd. ADGM No. 31285</span>
+      <span class="footer-legal-links">
+        <a href="terms.html">Terms</a>
+        <a href="privacy.html">Privacy</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

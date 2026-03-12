@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — World Automotive Group</title>
+<meta name="description" content="Partner with WAG. Whether you're a fuel retailer, insurer, OEM, bank, or entrepreneur — we'd like to hear from you.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+
+<style>
+/* ═══════ CONTACT PAGE STYLES ═══════ */
+
+/* Contact Grid */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: clamp(40px, 6vw, 80px);
+  align-items: start;
+}
+@media (max-width: 900px) {
+  .contact-grid { grid-template-columns: 1fr; }
+}
+
+/* Contact Form */
+.contact-form input, .contact-form select, .contact-form textarea {
+  width: 100%;
+  padding: 14px 18px;
+  border: 1px solid var(--pearl);
+  border-radius: 6px;
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: var(--coal);
+  background: var(--white);
+  transition: border-color 0.3s;
+  outline: none;
+}
+.contact-form input:focus, .contact-form select:focus, .contact-form textarea:focus {
+  border-color: var(--gold);
+}
+.contact-form label {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--slate);
+  margin-bottom: 6px;
+}
+.contact-form .form-group { margin-bottom: 20px; }
+.contact-form textarea { min-height: 140px; resize: vertical; }
+
+/* Contact Info Cards */
+.contact-info-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.contact-info-card {
+  padding: 24px 28px;
+  border: 1px solid var(--pearl);
+  border-radius: 8px;
+  background: var(--white);
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+.contact-info-card:hover {
+  border-color: rgba(192, 154, 83, 0.3);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+}
+.contact-info-card-title {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--coal);
+  margin-bottom: 8px;
+}
+.contact-info-card p {
+  font-size: 14px;
+  color: var(--slate);
+  font-weight: 300;
+  line-height: 1.7;
+}
+.contact-info-card a {
+  color: var(--gold);
+  text-decoration: none;
+  font-weight: 400;
+  transition: color 0.3s;
+}
+.contact-info-card a:hover {
+  color: var(--gold-light);
+}
+.contact-info-card .contact-highlight {
+  font-size: 13px;
+  color: var(--gold-dark);
+  font-weight: 500;
+  margin-top: 6px;
+  display: inline-block;
+}
+
+/* Audience Pathways */
+.pathways-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+}
+@media (max-width: 1100px) {
+  .pathways-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 700px) {
+  .pathways-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 480px) {
+  .pathways-grid { grid-template-columns: 1fr; }
+}
+.pathway-card {
+  padding: clamp(24px, 3vw, 32px);
+  border: 1px solid var(--pearl);
+  border-radius: 8px;
+  background: var(--white);
+  transition: border-color 0.4s, box-shadow 0.4s, transform 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+.pathway-card:hover {
+  border-color: var(--gold);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.04);
+  transform: translateY(-4px);
+}
+.pathway-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.pathway-card:hover::before { transform: scaleX(1); }
+.pathway-card .card-icon {
+  width: 44px; height: 44px;
+  background: rgba(192, 154, 83, 0.08);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+.pathway-card h3 {
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 400;
+  color: var(--coal);
+  margin-bottom: 8px;
+}
+.pathway-card p {
+  font-size: 13px;
+  color: var(--slate);
+  font-weight: 300;
+  line-height: 1.6;
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════ NAVIGATION ═══════ -->
+<div class="scroll-progress" id="scrollProgress"></div>
+<nav class="nav scrolled" id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="wag-logo.svg" alt="World Automotive Group" class="nav-logo-img">
+    </a>
+    <button class="nav-toggle" id="navToggle"><span></span><span></span><span></span></button>
+    <div class="nav-links" id="navLinks">
+      <a href="about.html">About</a>
+      <a href="aftermarket.html">Aftermarket</a>
+      <a href="data-software.html">Data &amp; Software</a>
+      <a href="presence.html">Presence</a>
+      <a href="leadership.html">Leadership</a>
+      <a href="venture-studio.html">Venture Studio</a>
+      <a href="contact.html" class="nav-cta active">Partner With Us</a>
+    </div>
+  </div>
+</nav>
+<div class="nav-overlay" id="navOverlay"></div>
+
+<!-- ═══════ PAGE HERO ═══════ -->
+<section class="page-hero" style="padding-bottom:40px;">
+  <div class="page-hero-grid"></div>
+  <div class="container">
+    <div class="page-hero-breadcrumb reveal">
+      <a href="index.html">Home</a>
+      <span>&rsaquo;</span>
+      <span>Contact</span>
+    </div>
+    <span class="label reveal">GET IN TOUCH</span>
+    <h1 class="page-hero-heading reveal reveal-delay-1">Partner <em>With Us</em></h1>
+    <p class="page-hero-sub reveal reveal-delay-2">Whether you're a fuel retailer, insurer, OEM, bank, or entrepreneur &mdash; we'd like to hear from you.</p>
+  </div>
+</section>
+
+<!-- ═══════ CONTACT CONTENT ═══════ -->
+<section class="bg-white section-pad">
+  <div class="container">
+    <div class="contact-grid">
+
+      <!-- Left: Contact Form -->
+      <div class="reveal-left">
+        <h2 class="section-heading" style="font-size:clamp(24px,3vw,32px);margin-bottom:8px;">Send us a message</h2>
+        <p class="section-subhead" style="margin-bottom:32px;">Fill out the form and our team will get back to you within 24 hours.</p>
+        <form class="contact-form" action="#" method="post">
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" placeholder="Your name" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="you@company.com" required>
+          </div>
+          <div class="form-group">
+            <label for="company">Company</label>
+            <input type="text" id="company" name="company" placeholder="Your company or organisation">
+          </div>
+          <div class="form-group">
+            <label for="interest">Area of Interest</label>
+            <select id="interest" name="interest" required>
+              <option value="" disabled selected>Select an area&hellip;</option>
+              <option value="aftermarket">Aftermarket Partnership</option>
+              <option value="data-software">Data &amp; Software Solutions</option>
+              <option value="insurance">Insurance &amp; Claims</option>
+              <option value="fintech">Fintech &amp; F&I</option>
+              <option value="venture-studio">Venture Studio</option>
+              <option value="general">General Inquiry</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="Tell us about your needs or how we can help&hellip;" required></textarea>
+          </div>
+          <button type="submit" class="btn-primary">
+            Send Message
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </form>
+      </div>
+
+      <!-- Right: Contact Info Cards -->
+      <div class="reveal-right">
+        <div class="contact-info-cards">
+          <div class="contact-info-card">
+            <div class="contact-info-card-title">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" style="vertical-align:-2px;margin-right:6px;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Headquarters
+            </div>
+            <p>Suite 203, Floor 11<br>Al Sarab Tower, ADGM Square<br>Abu Dhabi, UAE</p>
+          </div>
+          <div class="contact-info-card">
+            <div class="contact-info-card-title">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" style="vertical-align:-2px;margin-right:6px;"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              Phone
+            </div>
+            <p><a href="tel:+97143395922">+971 04 339 5922</a></p>
+          </div>
+          <div class="contact-info-card">
+            <div class="contact-info-card-title">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" style="vertical-align:-2px;margin-right:6px;"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              General Inquiries
+            </div>
+            <p><a href="mailto:info@wag-me.com">info@wag-me.com</a></p>
+          </div>
+          <div class="contact-info-card">
+            <div class="contact-info-card-title">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" style="vertical-align:-2px;margin-right:6px;"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+              Venture Studio
+            </div>
+            <p><a href="mailto:ventures@wag-me.com">ventures@wag-me.com</a></p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ MAP ═══════ -->
+<section style="position:relative;height:400px;overflow:hidden;">
+  <iframe
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3631.1!2d54.325!3d24.502!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5e440f8b5c0b3d%3A0x2c3b8e7d7f2b2b2b!2sADGM%20Square%2C%20Abu%20Dhabi!5e0!3m2!1sen!2sae!4v1710000000000!5m2!1sen!2sae"
+    width="100%" height="100%" style="border:0;filter:grayscale(1) contrast(1.1) brightness(0.7);" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+  </iframe>
+  <div style="position:absolute;inset:0;background:linear-gradient(to bottom, var(--coal) 0%, transparent 30%, transparent 70%, var(--white) 100%);pointer-events:none;"></div>
+  <div style="position:absolute;bottom:24px;left:50%;transform:translateX(-50%);background:var(--coal);color:var(--white);padding:12px 24px;border-radius:8px;font-size:14px;font-weight:500;display:flex;align-items:center;gap:8px;box-shadow:0 4px 20px rgba(0,0,0,0.3);z-index:1;">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+    Al Sarab Tower, ADGM Square, Abu Dhabi
+  </div>
+</section>
+
+<!-- ═══════ AUDIENCE PATHWAYS ═══════ -->
+<section class="bg-pearl section-pad-sm">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:48px;">
+      <span class="label reveal">HOW WE CAN HELP</span>
+      <h2 class="section-heading reveal reveal-delay-1" style="max-width:600px;margin-left:auto;margin-right:auto;">The right solution for <span class="text-gold">your industry</span></h2>
+    </div>
+    <div class="pathways-grid">
+
+      <div class="pathway-card reveal">
+        <div class="card-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5"><path d="M3 22l1.5-4.5M7.5 13.5L3 22M21 22l-1.5-4.5M16.5 13.5L21 22"/><circle cx="12" cy="8" r="5"/><path d="M7 13h10"/></svg>
+        </div>
+        <h3>Fuel Retailers</h3>
+        <p>Quick service partnerships across your network</p>
+      </div>
+
+      <div class="pathway-card reveal reveal-delay-1">
+        <div class="card-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3>Insurers</h3>
+        <p>Claims management, cost reduction, compliance</p>
+      </div>
+
+      <div class="pathway-card reveal reveal-delay-2">
+        <div class="card-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
+        </div>
+        <h3>Banks &amp; Finance</h3>
+        <p>Vehicle data, valuations, risk scoring</p>
+      </div>
+
+      <div class="pathway-card reveal reveal-delay-3">
+        <div class="card-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 3v18"/></svg>
+        </div>
+        <h3>OEMs &amp; Dealers</h3>
+        <p>Digital marketing, retention, data analytics</p>
+      </div>
+
+      <div class="pathway-card reveal reveal-delay-4">
+        <div class="card-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        </div>
+        <h3>Entrepreneurs</h3>
+        <p>Build with WAG's Venture Studio</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ FOOTER ═══════ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <img src="wag-logo.svg" alt="World Automotive Group" class="footer-logo-img">
+        <div class="footer-brand-name">World Automotive Group</div>
+        <div class="footer-brand-sub">Technology-Driven Automotive Platform</div>
+        <div class="footer-address">
+          Suite 203, Floor 11, Al Sarab Tower<br>ADGM Square, Abu Dhabi, UAE
+        </div>
+        <div class="footer-address">
+          <a href="https://maps.google.com/?q=Al+Sarab+Tower+ADGM+Square+Abu+Dhabi" target="_blank" rel="noopener">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            View on Google Maps
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Company</div>
+        <a href="about.html">About WAG</a>
+        <a href="leadership.html">Leadership</a>
+        <a href="presence.html">Global Presence</a>
+        <a href="venture-studio.html">Venture Studio</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Solutions</div>
+        <a href="aftermarket.html">Aftermarket</a>
+        <a href="data-software.html">Data &amp; Software</a>
+        <a href="fintech.html">FinTech</a>
+        <a href="knowledge-management.html">Consulting</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">&copy; 2026 World Automotive Group International Holdings Ltd. ADGM No. 31285</span>
+      <span class="footer-legal-links">
+        <a href="terms.html">Terms</a>
+        <a href="privacy.html">Privacy</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

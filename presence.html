@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Global Presence | World Automotive Group</title>
+  <meta name="description" content="WAG operates across 9 countries with 32+ locations spanning the Middle East, North Africa, West Africa, and North America.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+  /* ═══════ PRESENCE-SPECIFIC STYLES ═══════ */
+  .region-label {
+    font-family: var(--font-body);
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .region-label::before {
+    content: '';
+    width: 24px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .country-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .country-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(192,154,83,0.15);
+    border-radius: 12px;
+    padding: 32px;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .country-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--gold);
+    opacity: 0;
+    transition: opacity 0.4s;
+  }
+  .country-card:hover {
+    border-color: rgba(192,154,83,0.4);
+    background: rgba(255,255,255,0.05);
+    transform: translateY(-4px);
+  }
+  .country-card:hover::before {
+    opacity: 1;
+  }
+
+  .country-card.is-hq {
+    border-color: rgba(192,154,83,0.35);
+    background: rgba(192,154,83,0.06);
+  }
+  .country-card.is-hq::before { opacity: 1; }
+
+  .country-card.is-pipeline {
+    border-color: rgba(139,157,175,0.15);
+    opacity: 0.7;
+  }
+  .country-card.is-pipeline::before {
+    background: var(--mist);
+  }
+  .country-card.is-pipeline:hover {
+    opacity: 1;
+    border-color: rgba(139,157,175,0.3);
+  }
+
+  .country-flag {
+    font-size: 36px;
+    margin-bottom: 16px;
+    line-height: 1;
+  }
+  .country-name {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--white);
+    margin-bottom: 4px;
+  }
+  .country-badge {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 4px;
+    margin-bottom: 16px;
+  }
+  .country-badge.hq {
+    background: rgba(192,154,83,0.2);
+    color: var(--gold);
+  }
+  .country-badge.pipeline {
+    background: rgba(139,157,175,0.15);
+    color: var(--mist);
+  }
+  .country-badge.vicimus {
+    background: rgba(58,124,165,0.2);
+    color: #6BB8E0;
+  }
+
+  .country-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  .country-meta-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    color: var(--mist);
+    font-weight: 300;
+  }
+  .country-meta-val {
+    color: var(--pearl);
+    font-weight: 500;
+  }
+  .country-verticals {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 12px;
+  }
+  .country-vtag {
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    background: rgba(192,154,83,0.1);
+    color: var(--gold);
+    font-weight: 400;
+    letter-spacing: 0.02em;
+  }
+  .country-vtag.muted {
+    background: rgba(139,157,175,0.1);
+    color: var(--mist);
+  }
+
+  /* Map visual */
+  .presence-visual {
+    position: relative;
+    padding: 60px 0 40px;
+    text-align: center;
+  }
+  .presence-visual svg {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Expansion note */
+  .expansion-note {
+    background: rgba(192,154,83,0.05);
+    border: 1px solid rgba(192,154,83,0.15);
+    border-radius: 12px;
+    padding: 32px 40px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin-top: 48px;
+  }
+  .expansion-note-icon {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(192,154,83,0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gold);
+  }
+  .expansion-note-text {
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--pearl);
+    line-height: 1.6;
+  }
+  .expansion-note-text strong {
+    color: var(--white);
+    font-weight: 500;
+  }
+
+  @media (max-width: 1100px) {
+    .country-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 600px) {
+    .country-grid { grid-template-columns: 1fr; }
+    .expansion-note {
+      flex-direction: column;
+      text-align: center;
+      padding: 24px;
+    }
+  }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+  <nav class="nav scrolled" id="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <img src="wag-logo.svg" alt="World Automotive Group" class="nav-logo-img">
+      </a>
+      <button class="nav-toggle" id="navToggle"><span></span><span></span><span></span></button>
+      <div class="nav-links" id="navLinks">
+        <a href="about.html">About</a>
+        <a href="aftermarket.html">Aftermarket</a>
+        <a href="data-software.html">Data &amp; Software</a>
+        <a href="presence.html" class="active">Presence</a>
+        <a href="leadership.html">Leadership</a>
+        <a href="venture-studio.html">Venture Studio</a>
+        <a href="contact.html" class="nav-cta">Partner With Us</a>
+      </div>
+    </div>
+  </nav>
+  <div class="nav-overlay" id="navOverlay"></div>
+
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="page-hero-grid"></div>
+    <div class="container">
+      <div class="page-hero-breadcrumb reveal">
+        <a href="index.html">Home</a>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        <span>Global Presence</span>
+      </div>
+      <span class="label reveal">WHERE WE OPERATE</span>
+      <h1 class="page-hero-heading reveal">Rooted in the Region.<br><em>Built for Scale.</em></h1>
+      <p class="page-hero-sub reveal">From our headquarters in Abu Dhabi, WAG operates across 9 countries with 32+ locations &mdash; spanning the Middle East, North Africa, West Africa, and North America.</p>
+    </div>
+  </section>
+
+  <!-- Stats Strip -->
+  <section class="proof-strip">
+    <div class="container">
+      <div class="stat-grid stat-grid-4">
+        <div class="stat-cell reveal">
+          <div class="stat-num" data-count="9">0</div>
+          <div class="stat-label">Countries</div>
+        </div>
+        <div class="stat-cell reveal reveal-delay-1">
+          <div class="stat-num" data-count="32" data-suffix="+">0</div>
+          <div class="stat-label">Locations</div>
+        </div>
+        <div class="stat-cell reveal reveal-delay-2">
+          <div class="stat-num" data-count="5">0</div>
+          <div class="stat-label">Active Verticals</div>
+        </div>
+        <div class="stat-cell reveal reveal-delay-3">
+          <div class="stat-num" data-count="4" data-suffix=",000+">0</div>
+          <div class="stat-label">Team Members</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Visual Map -->
+  <section class="section-pad" style="background: var(--coal); overflow: hidden;">
+    <div class="container">
+      <div style="text-align:center;margin-bottom:48px;">
+        <span class="label reveal" style="color:var(--gold);">GLOBAL PRESENCE</span>
+        <h2 class="section-heading reveal" style="color:var(--white);">Our Footprint</h2>
+      </div>
+
+      <div class="reveal" style="position:relative;max-width:1000px;margin:0 auto;border-radius:16px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.04);padding:40px 24px 24px;">
+        <img src="world-map.svg" alt="WAG global presence map showing operations across Middle East, Africa, and North America" style="width:100%;height:auto;display:block;">
+      </div>
+    </div>
+  </section>
+
+  <!-- Active Markets Detail -->
+  <section class="section-pad" style="background: var(--coal); padding-top: 0;">
+    <div class="container">
+      <div class="region-label reveal">Active Markets</div>
+      <h2 class="section-heading reveal" style="color:var(--white);margin-bottom:48px;">Established Operations</h2>
+
+      <div class="country-grid">
+
+        <!-- UAE -->
+        <div class="country-card is-hq reveal">
+          <div class="country-flag">&#x1F1E6;&#x1F1EA;</div>
+          <div class="country-name">United Arab Emirates</div>
+          <span class="country-badge hq">Headquarters</span>
+          <div class="country-meta">
+            <div class="country-meta-row">
+              <span>Status</span>
+              <span class="country-meta-val">Headquarters</span>
+            </div>
+          </div>
+          <div class="country-verticals">
+            <span class="country-vtag">Aftermarket</span>
+            <span class="country-vtag">Data &amp; Software</span>
+            <span class="country-vtag">FinTech</span>
+          </div>
+        </div>
+
+        <!-- Saudi Arabia -->
+        <div class="country-card reveal reveal-delay-1">
+          <div class="country-flag">&#x1F1F8;&#x1F1E6;</div>
+          <div class="country-name">Saudi Arabia</div>
+          <div class="country-meta">
+            <div class="country-meta-row">
+              <span>Key Entity</span>
+              <span class="country-meta-val">AutoData</span>
+            </div>
+            <div class="country-meta-row">
+              <span>Focus</span>
+              <span class="country-meta-val">AutoData + Aftermarket Expansion</span>
+            </div>
+          </div>
+          <div class="country-verticals">
+            <span class="country-vtag">Data &amp; Software</span>
+            <span class="country-vtag">Aftermarket</span>
+          </div>
+        </div>
+
+        <!-- Morocco -->
+        <div class="country-card reveal reveal-delay-2">
+          <div class="country-flag">&#x1F1F2;&#x1F1E6;</div>
+          <div class="country-name">Morocco</div>
+          <div class="country-meta">
+            <div class="country-meta-row">
+              <span>Focus</span>
+              <span class="country-meta-val">North Africa hub</span>
+            </div>
+          </div>
+          <div class="country-verticals">
+            <span class="country-vtag">Aftermarket</span>
+            <span class="country-vtag">Data &amp; Software</span>
+          </div>
+        </div>
+
+        <!-- Canada -->
+        <div class="country-card reveal reveal-delay-1">
+          <div class="country-flag">&#x1F1E8;&#x1F1E6;</div>
+          <div class="country-name">Canada</div>
+          <span class="country-badge vicimus">Vicimus HQ</span>
+          <div class="country-meta">
+            <div class="country-meta-row">
+              <span>Key Entity</span>
+              <span class="country-meta-val">Vicimus Inc.</span>
+            </div>
+            <div class="country-meta-row">
+              <span>Focus</span>
+              <span class="country-meta-val">Digital platforms</span>
+            </div>
+          </div>
+          <div class="country-verticals">
+            <span class="country-vtag">Data &amp; Software</span>
+          </div>
+        </div>
+
+        <!-- United States -->
+        <div class="country-card reveal reveal-delay-2">
+          <div class="country-flag">&#x1F1FA;&#x1F1F8;</div>
+          <div class="country-name">United States</div>
+          <span class="country-badge vicimus">Vicimus</span>
+          <div class="country-meta">
+            <div class="country-meta-row">
+              <span>Key Entity</span>
+              <span class="country-meta-val">Vicimus Inc.</span>
+            </div>
+            <div class="country-meta-row">
+              <span>Focus</span>
+              <span class="country-meta-val">Digital platforms</span>
+            </div>
+          </div>
+          <div class="country-verticals">
+            <span class="country-vtag">Data &amp; Software</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pipeline Markets -->
+      <div class="region-label reveal" style="margin-top:72px;">Expansion Pipeline</div>
+      <h2 class="section-heading reveal" style="color:var(--white);margin-bottom:48px;">Next Markets</h2>
+
+      <div class="country-grid">
+        <!-- Egypt -->
+        <div class="country-card is-pipeline reveal">
+          <div class="country-flag">&#x1F1EA;&#x1F1EC;</div>
+          <div class="country-name">Egypt</div>
+          <span class="country-badge pipeline">Pipeline</span>
+          <div class="country-verticals">
+            <span class="country-vtag muted">Aftermarket</span>
+            <span class="country-vtag muted">Data &amp; Software</span>
+          </div>
+        </div>
+
+        <!-- Nigeria -->
+        <div class="country-card is-pipeline reveal reveal-delay-1">
+          <div class="country-flag">&#x1F1F3;&#x1F1EC;</div>
+          <div class="country-name">Nigeria</div>
+          <span class="country-badge pipeline">Pipeline</span>
+          <div class="country-verticals">
+            <span class="country-vtag muted">Aftermarket</span>
+            <span class="country-vtag muted">Data &amp; Software</span>
+          </div>
+        </div>
+
+        <!-- Ghana -->
+        <div class="country-card is-pipeline reveal reveal-delay-2">
+          <div class="country-flag">&#x1F1EC;&#x1F1ED;</div>
+          <div class="country-name">Ghana</div>
+          <span class="country-badge pipeline">Pipeline</span>
+          <div class="country-verticals">
+            <span class="country-vtag muted">Aftermarket</span>
+            <span class="country-vtag muted">Data &amp; Software</span>
+          </div>
+        </div>
+
+        <!-- Senegal -->
+        <div class="country-card is-pipeline reveal">
+          <div class="country-flag">&#x1F1F8;&#x1F1F3;</div>
+          <div class="country-name">Senegal</div>
+          <span class="country-badge pipeline">Pipeline</span>
+          <div class="country-verticals">
+            <span class="country-vtag muted">Aftermarket</span>
+            <span class="country-vtag muted">Data &amp; Software</span>
+          </div>
+        </div>
+
+        <!-- Ivory Coast -->
+        <div class="country-card is-pipeline reveal reveal-delay-1">
+          <div class="country-flag">&#x1F1E8;&#x1F1EE;</div>
+          <div class="country-name">Ivory Coast</div>
+          <span class="country-badge pipeline">Pipeline</span>
+          <div class="country-verticals">
+            <span class="country-vtag muted">Aftermarket</span>
+            <span class="country-vtag muted">Data &amp; Software</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Expansion Note -->
+      <div class="expansion-note reveal">
+        <div class="expansion-note-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        </div>
+        <div class="expansion-note-text">
+          <strong>West Africa expansion</strong> targets Nigeria, Ghana, Senegal, and Ivory Coast &mdash; addressing an underserved automotive aftermarket across the fastest-growing economies in Africa. WAG's proven operating model adapts to local fuel retail infrastructure.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Operating Model -->
+  <section class="section-pad" style="background: var(--white);">
+    <div class="container">
+      <span class="label reveal">HOW WE SCALE</span>
+      <h2 class="section-heading reveal" style="max-width:700px;">One Platform.<br>Local Execution.</h2>
+      <p class="section-subhead reveal" style="max-width:620px;">Each market benefits from WAG&rsquo;s shared technology, playbooks, and supply-chain relationships &mdash; while operating with local teams who understand the terrain.</p>
+
+      <div class="three-col" style="margin-top:48px;">
+        <div class="card reveal">
+          <div class="card-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9z"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/></svg>
+          </div>
+          <h3 style="font-family:var(--font-display);font-size:20px;margin-bottom:12px;color:var(--coal);">Shared Technology</h3>
+          <p style="font-size:15px;color:var(--slate);font-weight:300;line-height:1.6;">AutoData, Axxion, and Vicimus platforms are deployed across all markets &mdash; giving every site real-time data, inventory visibility, and digital tools from day one.</p>
+        </div>
+        <div class="card reveal reveal-delay-1">
+          <div class="card-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/><path d="M8 7h8M8 11h6"/></svg>
+          </div>
+          <h3 style="font-family:var(--font-display);font-size:20px;margin-bottom:12px;color:var(--coal);">Codified Playbooks</h3>
+          <p style="font-size:15px;color:var(--slate);font-weight:300;line-height:1.6;">Operating procedures, launch checklists, and quality standards are documented and continuously refined &mdash; so each new market ramps faster than the last.</p>
+        </div>
+        <div class="card reveal reveal-delay-2">
+          <div class="card-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </div>
+          <h3 style="font-family:var(--font-display);font-size:20px;margin-bottom:12px;color:var(--coal);">Local Teams</h3>
+          <p style="font-size:15px;color:var(--slate);font-weight:300;line-height:1.6;">On-the-ground operators bring market knowledge, regulatory expertise, and partner relationships &mdash; ensuring each deployment fits its local context.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section-pad" style="background:var(--coal);text-align:center;position:relative;overflow:hidden;">
+    <div class="geo-pattern" style="opacity:0.4;"></div>
+    <div class="container" style="position:relative;z-index:1;">
+      <span class="label reveal">PARTNER WITH US</span>
+      <h2 class="section-heading reveal" style="color:var(--white);max-width:600px;margin-left:auto;margin-right:auto;">
+        Expand With a Proven<br>Automotive Platform
+      </h2>
+      <p class="section-subhead reveal" style="max-width:500px;margin-left:auto;margin-right:auto;">
+        Whether you&rsquo;re a fuel retailer, OEM, or government entity &mdash; we&rsquo;d like to explore how we can grow together.
+      </p>
+      <div class="reveal reveal-delay-1" style="margin-top:32px;">
+        <a href="contact.html" class="btn-primary">Get in Touch <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14m-7-7 7 7-7 7"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <img src="wag-logo.svg" alt="World Automotive Group" class="footer-logo-img">
+        <div class="footer-brand-name">World Automotive Group</div>
+        <div class="footer-brand-sub">Technology-Driven Automotive Platform</div>
+        <div class="footer-address">
+          Suite 203, Floor 11, Al Sarab Tower<br>ADGM Square, Abu Dhabi, UAE
+        </div>
+        <div class="footer-address">
+          <a href="https://maps.google.com/?q=Al+Sarab+Tower+ADGM+Square+Abu+Dhabi" target="_blank" rel="noopener">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            View on Google Maps
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Company</div>
+        <a href="about.html">About WAG</a>
+        <a href="leadership.html">Leadership</a>
+        <a href="presence.html">Global Presence</a>
+        <a href="venture-studio.html">Venture Studio</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Solutions</div>
+        <a href="aftermarket.html">Aftermarket</a>
+        <a href="data-software.html">Data &amp; Software</a>
+        <a href="fintech.html">FinTech</a>
+        <a href="knowledge-management.html">Consulting</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">&copy; 2026 World Automotive Group International Holdings Ltd. ADGM No. 31285</span>
+      <span class="footer-legal-links">
+        <a href="terms.html">Terms</a>
+        <a href="privacy.html">Privacy</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

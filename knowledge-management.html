@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Knowledge Management | World Automotive Group</title>
+  <meta name="description" content="WAG turns everything it builds, learns, and operates into a scalable knowledge system — so expertise compounds across the group.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+  /* ═══════ KM-SPECIFIC STYLES ═══════ */
+  .capability-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    margin-top: 48px;
+  }
+  .capability-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 12px;
+    padding: 40px 36px;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .capability-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 100%;
+    background: var(--gold);
+    opacity: 0;
+    transition: opacity 0.4s;
+  }
+  .capability-card:hover {
+    background: rgba(255,255,255,0.05);
+    border-color: rgba(192,154,83,0.2);
+    transform: translateY(-3px);
+  }
+  .capability-card:hover::before { opacity: 1; }
+
+  .capability-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+    background: rgba(192,154,83,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gold);
+    margin-bottom: 24px;
+  }
+  .capability-card h3 {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--white);
+    margin-bottom: 12px;
+  }
+  .capability-card p {
+    font-size: 15px;
+    color: var(--mist);
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  .why-vertical {
+    background: rgba(192,154,83,0.05);
+    border: 1px solid rgba(192,154,83,0.15);
+    border-radius: 16px;
+    padding: 48px;
+    margin-top: 48px;
+  }
+  .why-vertical h3 {
+    font-family: var(--font-display);
+    font-size: 24px;
+    font-weight: 500;
+    color: var(--coal);
+    margin-bottom: 16px;
+  }
+  .why-vertical p {
+    font-size: 16px;
+    color: var(--slate);
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  .audience-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    margin-top: 40px;
+  }
+  .audience-card {
+    padding: 36px;
+    border-radius: 12px;
+    border: 1px solid rgba(0,0,0,0.06);
+    background: var(--white);
+  }
+  .audience-card h4 {
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--coal);
+    margin-bottom: 12px;
+  }
+  .audience-card p {
+    font-size: 15px;
+    color: var(--slate);
+    font-weight: 300;
+    line-height: 1.6;
+  }
+  .audience-icon {
+    font-size: 28px;
+    margin-bottom: 16px;
+    line-height: 1;
+  }
+
+  @media (max-width: 768px) {
+    .capability-grid { grid-template-columns: 1fr; }
+    .audience-grid { grid-template-columns: 1fr; }
+    .why-vertical { padding: 28px; }
+  }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+  <nav class="nav scrolled" id="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <img src="wag-logo.svg" alt="World Automotive Group" class="nav-logo-img">
+      </a>
+      <button class="nav-toggle" id="navToggle"><span></span><span></span><span></span></button>
+      <div class="nav-links" id="navLinks">
+        <a href="about.html">About</a>
+        <a href="aftermarket.html">Aftermarket</a>
+        <a href="data-software.html">Data &amp; Software</a>
+        <a href="presence.html">Presence</a>
+        <a href="leadership.html">Leadership</a>
+        <a href="venture-studio.html">Venture Studio</a>
+        <a href="contact.html" class="nav-cta">Partner With Us</a>
+      </div>
+    </div>
+  </nav>
+  <div class="nav-overlay" id="navOverlay"></div>
+
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="page-hero-grid"></div>
+    <div class="container">
+      <div class="page-hero-breadcrumb reveal">
+        <a href="index.html">Home</a>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        <span>Knowledge Management</span>
+      </div>
+      <span class="label reveal">VERTICAL</span>
+      <h1 class="page-hero-heading reveal">Expertise That <em>Compounds.</em></h1>
+      <p class="page-hero-sub reveal">Turning everything WAG builds, learns, and operates into a scalable knowledge system &mdash; so insights accelerate across the group instead of staying locked in individual teams.</p>
+    </div>
+  </section>
+
+  <!-- Core Capabilities -->
+  <section class="section-pad" style="background:var(--coal);">
+    <div class="container">
+      <span class="label reveal" style="color:var(--gold);">WHAT WE&rsquo;RE BUILDING</span>
+      <h2 class="section-heading reveal" style="color:var(--white);max-width:600px;">Four Pillars of<br>Organizational Intelligence</h2>
+
+      <div class="capability-grid">
+        <div class="capability-card reveal">
+          <div class="capability-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          </div>
+          <h3>Operating Playbooks</h3>
+          <p>Codified processes for how WAG launches, scales, and governs ventures and operations &mdash; from Venture Studio stage gates to site-level P&amp;L management.</p>
+        </div>
+        <div class="capability-card reveal reveal-delay-1">
+          <div class="capability-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <h3>Training &amp; Onboarding</h3>
+          <p>Structured programs that get new team members productive fast, whether they&rsquo;re joining a scaled business or an early-stage venture.</p>
+        </div>
+        <div class="capability-card reveal">
+          <div class="capability-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+          </div>
+          <h3>Knowledge Base &amp; Decision Traceability</h3>
+          <p>A living system that captures key decisions, the evidence behind them, and the outcomes &mdash; so the organization learns from itself.</p>
+        </div>
+        <div class="capability-card reveal reveal-delay-1">
+          <div class="capability-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/><polyline points="16 16 12 12 8 16"/></svg>
+          </div>
+          <h3>Cross-Vertical Learning Loops</h3>
+          <p>Mechanisms that route insights from one vertical into others &mdash; so aftermarket site performance informs fintech risk models, and vice versa.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why It's a Vertical -->
+  <section class="section-pad" style="background:var(--white);">
+    <div class="container">
+      <span class="label reveal">STRATEGIC RATIONALE</span>
+      <h2 class="section-heading reveal" style="max-width:650px;">More Than an Internal Function</h2>
+      <p class="section-subhead reveal" style="max-width:600px;">WAG operates across multiple countries, verticals, and stages of maturity. The ability to systematically capture and redeploy knowledge is a competitive advantage.</p>
+
+      <div class="why-vertical reveal">
+        <h3>A Scalable Asset</h3>
+        <p>Over time, this capability can become a product itself &mdash; advisory, licensing, and training services for the broader automotive ecosystem. What starts as internal discipline becomes external value.</p>
+      </div>
+
+      <div class="audience-grid">
+        <div class="audience-card reveal">
+          <div class="audience-icon">&#x1F3DB;&#xFE0F;</div>
+          <h4>For Partners &amp; Governments</h4>
+          <p>Signals institutional maturity. It tells government entities and large corporates: &ldquo;We don&rsquo;t just execute &mdash; we codify, measure, and improve systematically.&rdquo;</p>
+        </div>
+        <div class="audience-card reveal reveal-delay-1">
+          <div class="audience-icon">&#x1F4BC;</div>
+          <h4>For Talent</h4>
+          <p>Says: &ldquo;Join a company where what you build and learn gets captured and amplified, not lost.&rdquo; A magnet for ambitious operators and builders.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section-pad" style="background:var(--coal);text-align:center;position:relative;overflow:hidden;">
+    <div class="geo-pattern" style="opacity:0.4;"></div>
+    <div class="container" style="position:relative;z-index:1;">
+      <span class="label reveal">JOIN US</span>
+      <h2 class="section-heading reveal" style="color:var(--white);max-width:600px;margin-left:auto;margin-right:auto;">
+        Build Systems That<br>Scale Knowledge
+      </h2>
+      <p class="section-subhead reveal" style="max-width:500px;margin-left:auto;margin-right:auto;">
+        Interested in how WAG operates? Let&rsquo;s talk about partnerships, careers, or collaboration.
+      </p>
+      <div class="reveal reveal-delay-1" style="margin-top:32px;">
+        <a href="contact.html" class="btn-primary">Get in Touch <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14m-7-7 7 7-7 7"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <img src="wag-logo.svg" alt="World Automotive Group" class="footer-logo-img">
+        <div class="footer-brand-name">World Automotive Group</div>
+        <div class="footer-brand-sub">Technology-Driven Automotive Platform</div>
+        <div class="footer-address">
+          Suite 203, Floor 11, Al Sarab Tower<br>ADGM Square, Abu Dhabi, UAE
+        </div>
+        <div class="footer-address">
+          <a href="https://maps.google.com/?q=Al+Sarab+Tower+ADGM+Square+Abu+Dhabi" target="_blank" rel="noopener">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            View on Google Maps
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Company</div>
+        <a href="about.html">About WAG</a>
+        <a href="leadership.html">Leadership</a>
+        <a href="presence.html">Global Presence</a>
+        <a href="venture-studio.html">Venture Studio</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Solutions</div>
+        <a href="aftermarket.html">Aftermarket</a>
+        <a href="data-software.html">Data &amp; Software</a>
+        <a href="fintech.html">FinTech</a>
+        <a href="knowledge-management.html">Consulting</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">&copy; 2026 World Automotive Group International Holdings Ltd. ADGM No. 31285</span>
+      <span class="footer-legal-links">
+        <a href="terms.html">Terms</a>
+        <a href="privacy.html">Privacy</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

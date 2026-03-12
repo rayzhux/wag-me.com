@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leadership | World Automotive Group</title>
+  <meta name="description" content="A team of global automotive executives who have run real businesses at scale across multiple continents.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .narrow-content { max-width: 720px; }
+    .narrow-content p { font-size: 17px; line-height: 1.8; color: var(--slate); }
+    .logo-carousel {
+      overflow: hidden;
+      position: relative;
+      width: 100%;
+      mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+    }
+    .logo-carousel-track {
+      display: flex;
+      gap: 48px;
+      animation: logo-scroll 30s linear infinite;
+      width: max-content;
+    }
+    .logo-carousel-item {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 140px;
+      height: 60px;
+    }
+    .logo-carousel-item span {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--slate);
+      opacity: 0.5;
+      white-space: nowrap;
+      transition: opacity 0.3s;
+    }
+    .logo-carousel-item:hover span { opacity: 0.9; }
+    @keyframes logo-scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+  <nav class="nav scrolled" id="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <img src="wag-logo.svg" alt="World Automotive Group" class="nav-logo-img">
+      </a>
+      <button class="nav-toggle" id="navToggle"><span></span><span></span><span></span></button>
+      <div class="nav-links" id="navLinks">
+        <a href="about.html">About</a>
+        <a href="aftermarket.html">Aftermarket</a>
+        <a href="data-software.html">Data &amp; Software</a>
+        <a href="presence.html">Presence</a>
+        <a href="leadership.html" class="active">Leadership</a>
+        <a href="venture-studio.html">Venture Studio</a>
+        <a href="contact.html" class="nav-cta">Partner With Us</a>
+      </div>
+    </div>
+  </nav>
+  <div class="nav-overlay" id="navOverlay"></div>
+
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="page-hero-grid"></div>
+    <div class="container">
+      <div class="page-hero-breadcrumb reveal">
+        <a href="index.html">Home</a>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        <span>Leadership</span>
+      </div>
+      <div class="label reveal">LEADERSHIP</div>
+      <h1 class="page-hero-heading reveal">Operators and Builders. Not <em>Consultants</em>.</h1>
+      <p class="page-hero-sub reveal">A team of global automotive executives who have run real businesses at scale across multiple continents.</p>
+    </div>
+  </section>
+
+  <!-- Team Narrative -->
+  <section class="section-pad-sm" style="background:var(--white);">
+    <div class="container">
+      <div class="narrow-content reveal">
+        <p>World Automotive Group's leadership team has been assembled from the world's leading automotive and industrial companies &mdash; <strong>Audi, Volkswagen, General Motors, SAIC, Geely, Procter &amp; Gamble, TotalEnergies,</strong> and <strong>ADNOC</strong>.</p>
+        <p style="margin-top:1.25rem;">What unites us is operator DNA. Every member of the leadership team has built, scaled, or turned around real businesses. We bring cross-continental experience spanning China, North America, Europe, and the Middle East &mdash; and a shared conviction that the automotive economy is ready for a technology-driven transformation.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Core Leadership Grid -->
+  <section class="section-pad-sm" style="background:var(--white);">
+    <div class="container">
+      <div class="three-col">
+        <div class="leader-card reveal">
+          <img src="profile photos/Amin.jpg" alt="Amin Kadrie" class="leader-photo" style="object-position:45% 10%;" loading="lazy">
+          <div class="leader-name">Amin Kadrie</div>
+          <div class="leader-title">Chairman</div>
+          <p class="leader-bio">40+ years automotive leadership. Former CEO Alghanim Industries (Kuwait). Built and exited businesses across GCC, Canada, and Saudi Arabia.</p>
+        </div>
+        <div class="leader-card reveal">
+          <img src="profile photos/Terence.jpeg" alt="Terence Johnsson" class="leader-photo" loading="lazy">
+          <div class="leader-name">Terence Johnsson</div>
+          <div class="leader-title">Group CEO</div>
+          <p class="leader-bio">Global automotive executive. Experience across Audi, VW, GM, SAIC, and Geely. Speaker at The Economist.</p>
+        </div>
+        <div class="leader-card reveal">
+          <img src="profile photos/Alexander.jpeg" alt="Alex Maas" class="leader-photo" loading="lazy">
+          <div class="leader-name">Alex Maas</div>
+          <div class="leader-title">Chief Financial &amp; Investment Officer</div>
+          <p class="leader-bio">20+ years automotive finance across Europe, US, Asia, and the Middle East. Specializes in leasing, subscription, and digital flexibility.</p>
+        </div>
+        <div class="leader-card reveal">
+          <img src="profile photos/Thomas.jpeg" alt="Thomas Rebeyrol" class="leader-photo" loading="lazy">
+          <div class="leader-name">Thomas Rebeyrol</div>
+          <div class="leader-title">CEO, Aftermarket Solutions</div>
+          <p class="leader-bio">Retail, mobility and energy expert. Experience across Procter &amp; Gamble, TotalEnergies, and ADNOC.</p>
+        </div>
+        <div class="leader-card reveal">
+          <img src="profile photos/Khalid.jpg" alt="Khalid Kadrie" class="leader-photo" loading="lazy">
+          <div class="leader-name">Khalid Kadrie</div>
+          <div class="leader-title">CEO, Data &amp; Software Solutions</div>
+          <p class="leader-bio">Northwood University graduate. Passion for technology and efficiency. Leads AutoData, Vicimus, and Axxion.</p>
+        </div>
+        <div class="leader-card reveal">
+          <img src="profile photos/Raymond.jpeg" alt="Raymond Zhu" class="leader-photo" loading="lazy">
+          <div class="leader-name">Raymond Zhu</div>
+          <div class="leader-title">Chief Technology &amp; Product Strategy Officer</div>
+          <p class="leader-bio">Technology, product, data and AI leader. Experience across China, North America, and the Middle East.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Companies Section — Logo Carousel -->
+  <section class="section-pad-sm" style="background:var(--pearl);">
+    <div class="container" style="text-align:center;">
+      <div class="label reveal">COLLECTIVE EXPERIENCE</div>
+      <h2 class="reveal">Where Our Team Comes From</h2>
+    </div>
+    <div class="logo-carousel reveal" style="margin-top:32px;">
+      <div class="logo-carousel-track">
+        <div class="logo-carousel-item"><span>Audi</span></div>
+        <div class="logo-carousel-item"><span>Volkswagen</span></div>
+        <div class="logo-carousel-item"><span>General Motors</span></div>
+        <div class="logo-carousel-item"><span>SAIC Motor</span></div>
+        <div class="logo-carousel-item"><span>Geely</span></div>
+        <div class="logo-carousel-item"><span>P&amp;G</span></div>
+        <div class="logo-carousel-item"><span>TotalEnergies</span></div>
+        <div class="logo-carousel-item"><span>ADNOC</span></div>
+        <!-- Duplicate for seamless loop -->
+        <div class="logo-carousel-item"><span>Audi</span></div>
+        <div class="logo-carousel-item"><span>Volkswagen</span></div>
+        <div class="logo-carousel-item"><span>General Motors</span></div>
+        <div class="logo-carousel-item"><span>SAIC Motor</span></div>
+        <div class="logo-carousel-item"><span>Geely</span></div>
+        <div class="logo-carousel-item"><span>P&amp;G</span></div>
+        <div class="logo-carousel-item"><span>TotalEnergies</span></div>
+        <div class="logo-carousel-item"><span>ADNOC</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section-pad" style="background:var(--coal);text-align:center;">
+    <div class="container reveal">
+      <h2 style="color:var(--white);margin-bottom:1rem;">Join the Team</h2>
+      <p style="color:var(--mist);max-width:540px;margin:0 auto 2rem;font-weight:300;">We are always looking for exceptional operators, builders, and technologists who want to shape the future of automotive.</p>
+      <a href="contact.html" class="btn btn-primary">Get in Touch
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="M12 5l7 7-7 7"></path></svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <img src="wag-logo.svg" alt="World Automotive Group" class="footer-logo-img">
+        <div class="footer-brand-name">World Automotive Group</div>
+        <div class="footer-brand-sub">Technology-Driven Automotive Platform</div>
+        <div class="footer-address">
+          Suite 203, Floor 11, Al Sarab Tower<br>ADGM Square, Abu Dhabi, UAE
+        </div>
+        <div class="footer-address">
+          <a href="https://maps.google.com/?q=Al+Sarab+Tower+ADGM+Square+Abu+Dhabi" target="_blank" rel="noopener">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            View on Google Maps
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Company</div>
+        <a href="about.html">About WAG</a>
+        <a href="leadership.html">Leadership</a>
+        <a href="presence.html">Global Presence</a>
+        <a href="venture-studio.html">Venture Studio</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Solutions</div>
+        <a href="aftermarket.html">Aftermarket</a>
+        <a href="data-software.html">Data &amp; Software</a>
+        <a href="fintech.html">FinTech</a>
+        <a href="knowledge-management.html">Consulting</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">&copy; 2026 World Automotive Group International Holdings Ltd. ADGM No. 31285</span>
+      <span class="footer-legal-links">
+        <a href="terms.html">Terms</a>
+        <a href="privacy.html">Privacy</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
