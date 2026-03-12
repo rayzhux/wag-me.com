@@ -11,11 +11,59 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <style>
+    .page-hero { display: block !important; padding-top: 140px; }
+    .page-hero .container { width: 100%; }
+    .am-hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 48px;
+      align-items: center;
+    }
+    .am-hero-grid .page-hero-heading {
+      font-size: clamp(32px, 3.8vw, 56px);
+    }
+    .am-hero-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: rgba(192,154,83,0.15);
+      border: 1px solid rgba(192,154,83,0.2);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    .am-hero-stat {
+      padding: 20px 16px;
+      background: rgba(11,18,21,0.6);
+      backdrop-filter: blur(8px);
+      text-align: center;
+    }
+    .am-hero-stat:last-child {
+      grid-column: 1 / -1;
+      border-top: 1px solid rgba(192,154,83,0.15);
+    }
+    .am-hero-stat-num {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 600;
+      color: var(--gold);
+    }
+    .am-hero-stat-label {
+      font-size: 12px;
+      color: var(--silver);
+      font-weight: 400;
+      margin-top: 4px;
+      letter-spacing: 0.3px;
+    }
+    @media (max-width: 900px) {
+      .am-hero-grid { grid-template-columns: 1fr; gap: 40px; }
+      .am-hero-stats { max-width: 400px; }
+    }
     @media (max-width: 768px) {
       .eco-stats, .eco-brands { grid-template-columns: 1fr 1fr !important; }
     }
     @media (max-width: 480px) {
       .eco-brands { grid-template-columns: 1fr !important; }
+      .am-hero-stats { max-width: 100%; }
     }
   </style>
 </head>
@@ -43,49 +91,47 @@
   <div class="nav-overlay" id="navOverlay"></div>
 
   <!-- Page Hero -->
-  <section class="page-hero">
+  <section class="page-hero" style="min-height:560px;">
     <div class="page-hero-grid"></div>
     <div class="container">
       <div class="page-hero-breadcrumb reveal">
         <a href="index.html">Home</a> &rsaquo; <a href="#">Solutions</a> &rsaquo; <span>Aftermarket Solutions</span>
       </div>
-      <div class="label reveal">AFTERMARKET SOLUTIONS</div>
-      <h1 class="page-hero-heading reveal reveal-delay-1">The Most Trusted Vehicle Service Platform Across <em>GCC &amp; MEA</em></h1>
-      <p class="page-hero-sub reveal reveal-delay-2">20+ years of proven quick service operations. 330,000+ customers. Now scaling across the Middle East and Africa through strategic fuel retail partnerships.</p>
-      <div class="reveal reveal-delay-3" style="display:flex;gap:16px;flex-wrap:wrap;margin-top:32px;">
-        <a href="contact.html" class="btn-primary">Partner With Us &rarr;</a>
-        <a href="#expressfit" class="btn-secondary">Explore ExpressFit &rarr;</a>
+      <div class="am-hero-grid">
+        <div>
+          <div class="label reveal">AFTERMARKET SOLUTIONS</div>
+          <h1 class="page-hero-heading reveal reveal-delay-1">The Most Trusted Vehicle Service Platform Across <em>GCC &amp; MEA</em></h1>
+          <p class="page-hero-sub reveal reveal-delay-2">20+ years of proven quick service operations. 330,000+ customers. Now scaling across the Middle East and Africa through strategic fuel retail partnerships.</p>
+          <div class="reveal reveal-delay-3" style="display:flex;gap:16px;flex-wrap:wrap;margin-top:32px;">
+            <a href="contact.html" class="btn-primary">Partner With Us &rarr;</a>
+            <a href="#expressfit" class="btn-secondary">Explore ExpressFit &rarr;</a>
+          </div>
+        </div>
+        <div class="am-hero-stats reveal reveal-delay-2">
+          <div class="am-hero-stat">
+            <div class="am-hero-stat-num" data-count="32">0</div>
+            <div class="am-hero-stat-label">Service Locations</div>
+          </div>
+          <div class="am-hero-stat">
+            <div class="am-hero-stat-num" data-count="330">0</div>
+            <div class="am-hero-stat-label">Active Customers (K)</div>
+          </div>
+          <div class="am-hero-stat">
+            <div class="am-hero-stat-num" data-count="150">0</div>
+            <div class="am-hero-stat-label">Vehicles Annually (K)</div>
+          </div>
+          <div class="am-hero-stat">
+            <div class="am-hero-stat-num" data-count="20">0</div>
+            <div class="am-hero-stat-label">Years of Operations</div>
+          </div>
+          <div class="am-hero-stat">
+            <div class="am-hero-stat-num" data-count="100">0</div>
+            <div class="am-hero-stat-label">Target Locations by 2028</div>
+          </div>
+        </div>
       </div>
     </div>
     <div class="deco-line"></div>
-  </section>
-
-  <!-- Stats Strip -->
-  <section style="background:var(--coal);padding:48px 0;">
-    <div class="container">
-      <div class="stat-grid stat-grid-5">
-        <div class="stat-cell reveal">
-          <div class="stat-num" data-count="32">0</div>
-          <div class="stat-label">Service Locations</div>
-        </div>
-        <div class="stat-cell reveal reveal-delay-1">
-          <div class="stat-num" data-count="330">0</div>
-          <div class="stat-label">Active Customers (K)</div>
-        </div>
-        <div class="stat-cell reveal reveal-delay-2">
-          <div class="stat-num" data-count="150">0</div>
-          <div class="stat-label">Vehicles Annually (K)</div>
-        </div>
-        <div class="stat-cell reveal reveal-delay-3">
-          <div class="stat-num" data-count="20">0</div>
-          <div class="stat-label">Years of Operations</div>
-        </div>
-        <div class="stat-cell reveal reveal-delay-4">
-          <div class="stat-num" data-count="100">0</div>
-          <div class="stat-label">Target Locations by 2028</div>
-        </div>
-      </div>
-    </div>
   </section>
 
   <!-- Skelmore Holdings Ecosystem -->
