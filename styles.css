@@ -279,6 +279,72 @@ ul { list-style: none; }
   transform: scaleX(1);
   transform-origin: left;
 }
+
+/* ═══════ NAV DROPDOWN ═══════ */
+.nav-dropdown {
+  position: relative;
+}
+.nav-dropdown-toggle {
+  font-size: 14.5px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.65);
+  padding: 8px 14px;
+  transition: color 0.3s;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  font-family: inherit;
+}
+.nav-dropdown-toggle:hover,
+.nav-dropdown.open .nav-dropdown-toggle { color: var(--white); }
+.nav-dropdown-toggle svg {
+  transition: transform 0.3s;
+  opacity: 0.5;
+}
+.nav-dropdown.open .nav-dropdown-toggle svg {
+  transform: rotate(180deg);
+  opacity: 1;
+}
+.nav-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  min-width: 220px;
+  background: var(--coal);
+  border: 1px solid rgba(192, 154, 83, 0.15);
+  border-radius: 8px;
+  padding: 8px 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+  z-index: 100;
+}
+.nav-dropdown.open .nav-dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.nav-dropdown-menu a {
+  display: block;
+  padding: 10px 20px !important;
+  font-size: 14px !important;
+  color: rgba(255,255,255,0.6) !important;
+  transition: background 0.2s, color 0.2s !important;
+  white-space: nowrap;
+}
+.nav-dropdown-menu a:hover {
+  background: rgba(192, 154, 83, 0.08) !important;
+  color: var(--white) !important;
+}
+.nav-dropdown-menu a::after { display: none !important; }
+
 .nav-cta {
   margin-left: 12px;
   padding: 10px 22px !important;
@@ -326,6 +392,21 @@ ul { list-style: none; }
   .nav-links.open { right: 0; }
   .nav-links a { font-size: 18px; padding: 12px 0; color: rgba(255,255,255,0.6); }
   .nav-cta { margin-left: 0 !important; margin-top: 16px; text-align: center; display: block; }
+  .nav-dropdown-toggle { font-size: 18px; padding: 12px 0; }
+  .nav-dropdown-menu {
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0 0 0 20px;
+    min-width: auto;
+    display: none;
+  }
+  .nav-dropdown.open .nav-dropdown-menu { display: block; }
+  .nav-dropdown-menu a { padding: 8px 0 !important; font-size: 16px !important; }
 }
 
 /* ═══════ SCROLL PROGRESS ═══════ */

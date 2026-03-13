@@ -63,6 +63,25 @@ document.querySelectorAll('.nav-links a').forEach(a => {
   }
 });
 
+// ═══════ NAV DROPDOWN ═══════
+document.querySelectorAll('.nav-dropdown-toggle').forEach(toggle => {
+  toggle.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const dropdown = toggle.closest('.nav-dropdown');
+    dropdown.classList.toggle('open');
+  });
+});
+// Close dropdown when clicking outside
+document.addEventListener('click', () => {
+  document.querySelectorAll('.nav-dropdown.open').forEach(d => d.classList.remove('open'));
+});
+// Highlight dropdown toggle if on a vertical page
+const verticalPages = ['aftermarket.html', 'data-software.html', 'fintech.html', 'consulting.html'];
+if (verticalPages.includes(currentPath)) {
+  const toggle = document.querySelector('.nav-dropdown-toggle');
+  if (toggle) toggle.style.color = 'var(--white)';
+}
+
 // ═══════ REVEAL ON SCROLL ═══════
 const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
