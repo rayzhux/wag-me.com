@@ -1,0 +1,39 @@
+# World Automotive Group (WAG)
+
+> World Automotive Group (WAG) is a technology-driven automotive platform building the data and technology backbone of the automotive economy across the Middle East, North Africa, and North America. Headquartered in Abu Dhabi (ADGM), WAG operates across four verticals: Aftermarket Services, Data & Software, Automotive FinTech, and Consulting.
+
+## Company Overview
+
+- **Full Name:** World Automotive Group International Holdings Ltd.
+- **Short Name:** WAG
+- **Headquarters:** Al Sarab Tower, ADGM Square, Abu Dhabi, UAE
+- **ADGM Registration:** No. 31285
+- **Website:** https://worldauto.group
+- **Verticals:** Aftermarket, Data & Software, Automotive FinTech, Consulting
+- **Geographic Presence:** UAE, Saudi Arabia, Morocco, Egypt, Canada, Nigeria, Ghana, Senegal, Ivory Coast
+- **Key Subsidiaries:** AutoData (data & analytics), Vicimus (dealer software), Axxion (insurance claims management)
+
+## Pages
+
+- [Home](https://worldauto.group/index.html): Overview of WAG as a technology-driven automotive platform spanning four verticals across MENA and North America.
+- [Our Story](https://worldauto.group/about.html): 40+ years of automotive expertise. Company history, mission, vision, and growth trajectory from the Kadrie family business to a multi-vertical technology platform.
+- [Aftermarket Solutions](https://worldauto.group/aftermarket.html): Quick service vehicle maintenance operations under the ExpressFit brand. 330,000+ customers served, 20+ years of operations. Partnership models include franchise, joint venture, and build-operate-transfer with fuel retailers across MENA and Africa.
+- [Data & Software Solutions](https://worldauto.group/data-software.html): Three software companies — AutoData (automotive data & analytics APIs), Vicimus (dealer software solutions for OEMs and dealerships), and Axxion (insurance claims management platform). Serving OEMs, dealers, insurers, financers, and government across the GCC.
+- [Automotive FinTech](https://worldauto.group/fintech.html): Digital-first F&I brokerage building an API-driven marketplace connecting customers, dealers, banks, and insurers. Targeting the underserved used car finance and insurance market in the Middle East.
+- [Consulting](https://worldauto.group/consulting.html): Scalable automotive knowledge system — playbooks, training programs, knowledge bases, and learning loops built from WAG's operational experience across verticals.
+- [Global Presence](https://worldauto.group/presence.html): Operations across 9 countries with 32+ locations spanning the Middle East, North Africa, West Africa, and North America.
+- [Leadership](https://worldauto.group/leadership.html): Executive team with experience across Audi, Volkswagen, GM, Mercedes, Toyota, Hyundai, Al Futtaim, and other global automotive brands.
+- [Venture Studio](https://worldauto.group/venture-studio.html): WAG's venture studio launches and scales new businesses at the intersection of automotive, data, AI, and financial services.
+- [Contact](https://worldauto.group/contact.html): Partnership inquiries for fuel retailers, insurers, OEMs, banks, and entrepreneurs.
+
+## Key Entities
+
+- **PAG Direct:** Parent company — Premium Automotive Group Direct
+- **ExpressFit:** WAG's quick service aftermarket brand
+- **AutoData:** Automotive data and analytics company (autodatame.com)
+- **Vicimus:** Dealer software solutions company (vicimus.com)
+- **Axxion:** Insurance claims management platform (axxion.co)
+- **Amin Kadrie:** Co-Founder & CEO
+- **Alex Kadrie:** Co-Founder & COO
+- **Terence Johnsson:** Chief Strategy Officer
+- **Raymond Zhu:** Chief Technology Officer

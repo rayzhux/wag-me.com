@@ -1,0 +1,11 @@
+# World Automotive Group — worldauto.group
+# Allow all crawlers including AI bots
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://worldauto.group/sitemap.xml
+
+# AI Discoverability
+# See also: https://worldauto.group/llms.txt
