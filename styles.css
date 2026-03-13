@@ -57,7 +57,7 @@ ul { list-style: none; }
 
 .label {
   font-family: var(--font-body);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 2.5px;
   text-transform: uppercase;
   font-weight: 500;
@@ -216,12 +216,19 @@ ul { list-style: none; }
 
 .nav-logo { display: flex; align-items: center; gap: 14px; }
 .nav-logo-img {
-  height: 32px;
+  height: 24px;
   width: auto;
   color: var(--white);
-  transition: opacity 0.3s;
+  transition: opacity 0.3s, height 0.4s;
+  padding: 6px 10px;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 4px;
+  box-sizing: content-box;
 }
-.nav.scrolled .nav-logo-img { height: 28px; }
+.nav.scrolled .nav-logo-img {
+  height: 20px;
+  padding: 5px 8px;
+}
 .nav-logo-text {
   font-family: var(--font-display);
   font-size: 16px;
@@ -578,7 +585,7 @@ ul { list-style: none; }
 }
 .footer-brand-desc { font-size: 13px; color: var(--mist); font-weight: 300; line-height: 1.7; max-width: 320px; }
 .footer-col-title {
-  font-size: 11px;
+  font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 1.5px;
   color: var(--gold);
@@ -619,10 +626,10 @@ ul { list-style: none; }
   padding-top: 28px;
   border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
-.footer-copy { font-size: 11px; color: var(--mist); font-weight: 300; opacity: 0.6; }
-.footer-legal { font-size: 11px; color: var(--mist); font-weight: 300; opacity: 0.4; }
+.footer-copy { font-size: 12px; color: var(--mist); font-weight: 300; opacity: 0.6; }
+.footer-legal { font-size: 12px; color: var(--mist); font-weight: 300; opacity: 0.4; }
 .footer-legal-links { display: flex; gap: 16px; flex-wrap: wrap; }
-.footer-legal-links a { font-size: 11px; color: var(--mist); text-decoration: none; opacity: 0.5; transition: all 0.3s; }
+.footer-legal-links a { font-size: 12px; color: var(--mist); text-decoration: none; opacity: 0.5; transition: all 0.3s; }
 .footer-legal-links a:hover { color: var(--gold); opacity: 1; }
 
 /* ═══════ MISC ═══════ */

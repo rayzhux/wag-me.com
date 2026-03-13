@@ -65,7 +65,7 @@
   margin-bottom: 10px;
 }
 .provide-card p {
-  font-size: 14px;
+  font-size: 15px;
   color: var(--mist);
   font-weight: 300;
   line-height: 1.7;
@@ -114,7 +114,7 @@
   margin-bottom: 10px;
 }
 .who-card p {
-  font-size: 14px;
+  font-size: 15px;
   color: var(--slate);
   font-weight: 300;
   line-height: 1.7;
@@ -151,6 +151,20 @@
   grid-template-columns: repeat(4, 1fr);
   gap: 24px;
   position: relative;
+}
+/* Connector line between steps */
+.process-grid::before {
+  content: '';
+  position: absolute;
+  top: 50px;
+  left: calc(12.5% + 12px);
+  right: calc(12.5% + 12px);
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold), rgba(192,154,83,0.3));
+  z-index: 0;
+}
+@media (max-width: 900px) {
+  .process-grid::before { display: none; }
 }
 @media (max-width: 900px) {
   .process-grid { grid-template-columns: repeat(2, 1fr); }
@@ -191,7 +205,7 @@
   margin-bottom: 8px;
 }
 .process-step p {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--slate);
   font-weight: 300;
   line-height: 1.6;
@@ -247,7 +261,8 @@
     </a>
     <button class="nav-toggle" id="navToggle"><span></span><span></span><span></span></button>
     <div class="nav-links" id="navLinks">
-      <a href="about.html">About</a>
+      <a href="index.html">Home</a>
+        <a href="about.html">Story</a>
       <a href="aftermarket.html">Aftermarket Solutions</a>
       <a href="data-software.html">Data &amp; Software Solutions</a>
       <a href="presence.html">Global Presence</a>
@@ -281,6 +296,23 @@
       <div class="reveal-left">
         <span class="label">The Opportunity</span>
         <h2 class="section-heading" style="font-size:clamp(28px,3.5vw,44px);">Why a <span class="text-gold">Venture Studio</span></h2>
+        <!-- Visual: Funnel diagram -->
+        <div class="vs-funnel reveal" style="margin-top:40px;">
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <div style="background:var(--coal);color:var(--white);padding:14px 24px;border-radius:8px;font-size:14px;font-weight:400;text-align:center;width:100%;">
+              <span style="color:var(--gold);font-family:var(--font-display);font-weight:500;">Idea</span> &mdash; Automotive &times; Technology
+            </div>
+            <div style="background:var(--coal);color:var(--white);padding:14px 24px;border-radius:8px;font-size:14px;font-weight:400;text-align:center;width:88%;margin:0 auto;">
+              <span style="color:var(--gold);font-family:var(--font-display);font-weight:500;">Validate</span> &mdash; Data + Customer Signal
+            </div>
+            <div style="background:var(--coal);color:var(--white);padding:14px 24px;border-radius:8px;font-size:14px;font-weight:400;text-align:center;width:76%;margin:0 auto;">
+              <span style="color:var(--gold);font-family:var(--font-display);font-weight:500;">Build</span> &mdash; MVP on WAG Platform
+            </div>
+            <div style="background:var(--gold);color:var(--coal);padding:14px 24px;border-radius:8px;font-size:14px;font-weight:500;text-align:center;width:64%;margin:0 auto;">
+              Standalone WAG Business
+            </div>
+          </div>
+        </div>
       </div>
       <div class="vs-why-text reveal-right">
         <p>The MENA automotive ecosystem is fragmented, largely offline, and underserved by technology. This is not a problem solved by one product &mdash; it is solved by building many businesses, fast, on shared infrastructure.</p>
@@ -477,7 +509,7 @@
       </div>
       <div class="footer-col">
         <div class="footer-col-title">Company</div>
-        <a href="about.html">About WAG</a>
+        <a href="about.html">Our Story</a>
         <a href="leadership.html">Leadership</a>
         <a href="presence.html">Global Presence</a>
         <a href="venture-studio.html">Venture Studio</a>
