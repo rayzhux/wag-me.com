@@ -81,6 +81,12 @@ if (verticalPages.includes(currentPath)) {
   const toggle = document.querySelector('.nav-dropdown-toggle');
   if (toggle) toggle.style.color = 'var(--white)';
 }
+// Also highlight the active dropdown menu item
+document.querySelectorAll('.nav-dropdown-menu a').forEach(a => {
+  if (a.getAttribute('href') === currentPath) {
+    a.style.color = 'var(--white)';
+  }
+});
 
 // ═══════ REVEAL ON SCROLL ═══════
 const revealObserver = new IntersectionObserver((entries) => {
