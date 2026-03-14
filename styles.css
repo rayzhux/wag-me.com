@@ -248,10 +248,10 @@ ul { list-style: none; }
   display: block;
 }
 .footer-logo-img {
-  height: 24px;
+  height: 56px;
   width: auto;
   color: rgba(255,255,255,0.7);
-  margin-bottom: 12px;
+  margin-bottom: 16px;
 }
 .nav-links { display: flex; align-items: center; gap: 0; }
 .nav-links a {
