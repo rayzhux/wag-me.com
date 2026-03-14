@@ -216,18 +216,18 @@ ul { list-style: none; }
 
 .nav-logo { display: flex; align-items: center; gap: 14px; }
 .nav-logo-img {
-  height: 24px;
+  height: 56px;
   width: auto;
   color: var(--white);
   transition: opacity 0.3s, height 0.4s;
-  padding: 6px 10px;
-  border: 1px solid rgba(255,255,255,0.2);
-  border-radius: 4px;
+  padding: 0;
+  border: none;
+  border-radius: 0;
   box-sizing: content-box;
 }
 .nav.scrolled .nav-logo-img {
-  height: 20px;
-  padding: 5px 8px;
+  height: 44px;
+  padding: 0;
 }
 .nav-logo-text {
   font-family: var(--font-display);
