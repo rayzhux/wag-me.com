@@ -406,7 +406,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .nav-links a.nav-cta::after { display: none; }
 
 /* Mobile nav */
-.nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
+.nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 10px; min-width: 44px; min-height: 44px; }
 .nav-toggle span { display: block; width: 24px; height: 2px; background: var(--white); margin: 5px 0; transition: 0.3s; }
 
 .nav-overlay {
@@ -554,6 +554,10 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 @media (max-width: 768px) {
   .stat-grid-4, .stat-grid-5 { grid-template-columns: repeat(2, 1fr); }
   .stat-grid-3 { grid-template-columns: 1fr; }
+  .stat-cell { padding: 24px 16px; }
+}
+@media (max-width: 380px) {
+  .stat-grid-4, .stat-grid-5 { grid-template-columns: 1fr; }
 }
 
 /* ═══════ CARDS ═══════ */
@@ -697,6 +701,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 }
 @media (max-width: 768px) {
   .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+  .footer-col a { padding: 6px 0; }
 }
 .footer-brand-name {
   font-family: var(--font-display);
@@ -841,13 +846,25 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 
 @media (max-width: 900px) {
   .two-col { grid-template-columns: 1fr; }
-  .three-col { grid-template-columns: 1fr; }
+  .three-col { grid-template-columns: repeat(2, 1fr); }
+  .page-hero { min-height: 360px; }
+  .page-hero .container { padding-bottom: 48px; }
 }
 @media (max-width: 768px) {
   .four-col { grid-template-columns: repeat(2, 1fr); }
+  .proof-strip { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  .three-col { grid-template-columns: 1fr; }
+  .page-hero { min-height: auto; padding-bottom: 0; }
 }
 @media (max-width: 480px) {
   .four-col { grid-template-columns: 1fr; }
+  .proof-strip { grid-template-columns: 1fr; }
+  .footer-copy { font-size: 11px; }
+  .hero-btns { flex-direction: column; }
+  .hero-btns .btn-primary,
+  .hero-btns .btn-secondary { width: 100%; justify-content: center; }
 }
 
 /* Number counter animation */
