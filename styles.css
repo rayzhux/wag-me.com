@@ -63,6 +63,11 @@ body {
   background: var(--white);
   line-height: 1.7;
   overflow-x: hidden;
+  animation: page-fade-in 0.5s ease-out;
+}
+@keyframes page-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 ::selection { background: var(--gold); color: var(--white); }
@@ -301,11 +306,14 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   height: 56px;
   width: auto;
   color: var(--gold-light);
-  transition: opacity 0.3s, height 0.4s;
+  transition: opacity 0.3s, height 0.4s, filter 0.3s;
   padding: 0;
   border: none;
   border-radius: 0;
   box-sizing: content-box;
+}
+.nav-logo:hover .nav-logo-img {
+  filter: brightness(1.15);
 }
 .nav.scrolled .nav-logo-img {
   height: 44px;
@@ -334,6 +342,11 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   width: auto;
   color: rgba(255,255,255,0.7);
   margin-bottom: 16px;
+  transition: filter 0.3s, opacity 0.3s;
+}
+.footer-logo-img:hover {
+  filter: brightness(1.2);
+  opacity: 1;
 }
 .nav-links { display: flex; align-items: center; gap: 0; }
 .nav-links a {

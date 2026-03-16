@@ -1,5 +1,15 @@
 // ═══════ WAG Corporate — Shared Scripts ═══════
 
+// Console brand message
+console.log(
+  '%cWorld Automotive Group',
+  'font-family:Georgia,serif;font-size:20px;color:#C09A53;font-weight:400;'
+);
+console.log(
+  '%cBuilding the technology backbone of the automotive economy.\nhttps://worldauto.group',
+  'font-family:system-ui;font-size:12px;color:#8D9EAD;'
+);
+
 // Navigation scroll behavior
 const nav = document.getElementById('nav');
 const navToggle = document.getElementById('navToggle');
@@ -200,7 +210,22 @@ function animateCounter(el) {
     const current = isFloat ? (target * eased).toFixed(0) : Math.floor(target * eased);
     el.textContent = prefix + current.toLocaleString() + suffix;
     if (progress < 1) requestAnimationFrame(update);
-    else el.textContent = prefix + (isFloat ? target.toFixed(0) : target).toLocaleString() + suffix;
+    else {
+      el.textContent = prefix + (isFloat ? target.toFixed(0) : target).toLocaleString() + suffix;
+      // Brief gold glow when counter lands
+      el.style.transition = 'text-shadow 0.4s';
+      el.style.textShadow = '0 0 20px rgba(192,154,83,0.4)';
+      setTimeout(() => { el.style.textShadow = 'none'; }, 600);
+    }
   }
   requestAnimationFrame(update);
 }
+
+// ═══════ FOOTER LOGO → SCROLL TO TOP ═══════
+document.querySelectorAll('.footer-logo-img').forEach(logo => {
+  logo.style.cursor = 'pointer';
+  logo.setAttribute('title', 'Back to top');
+  logo.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+});
