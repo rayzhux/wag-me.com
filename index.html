@@ -28,8 +28,8 @@
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 80% 60% at 70% 40%, rgba(192, 154, 83, 0.07) 0%, transparent 70%),
-    radial-gradient(ellipse 50% 80% at 20% 80%, rgba(58, 124, 165, 0.04) 0%, transparent 70%);
+    radial-gradient(ellipse 80% 60% at 70% 40%, rgba(192, 154, 83, 0.1) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 80% at 20% 80%, rgba(58, 124, 165, 0.05) 0%, transparent 70%);
 }
 .hero-grid {
   position: absolute;
@@ -44,39 +44,39 @@
 .hero-label {
   font-family: var(--font-body);
   font-size: 11px;
-  letter-spacing: 3px;
+  letter-spacing: 4px;
   text-transform: uppercase;
   color: var(--gold);
-  font-weight: 500;
-  margin-bottom: 24px;
+  font-weight: 600;
+  margin-bottom: 32px;
   display: flex;
   align-items: center;
   gap: 16px;
 }
 .hero-label::before {
   content: '';
-  width: 40px;
-  height: 1px;
+  width: 48px;
+  height: 2px;
   background: var(--gold);
 }
 .hero-heading {
   font-family: var(--font-display);
-  font-size: clamp(36px, 4.2vw, 64px);
+  font-size: clamp(40px, 5.5vw, 80px);
   font-weight: 400;
   color: var(--white);
-  line-height: 1.12;
-  letter-spacing: -0.02em;
-  margin-bottom: 24px;
-  max-width: 820px;
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+  margin-bottom: 28px;
+  max-width: 860px;
 }
 .hero-heading em { font-style: italic; color: var(--gold); }
 .hero-sub {
-  font-size: clamp(16px, 1.5vw, 19px);
+  font-size: clamp(17px, 1.6vw, 21px);
   color: var(--silver);
   line-height: 1.7;
-  max-width: 580px;
+  max-width: 600px;
   font-weight: 300;
-  margin-bottom: 40px;
+  margin-bottom: 48px;
 }
 .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; }
 
