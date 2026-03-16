@@ -32,6 +32,7 @@ window.addEventListener('scroll', () => {
 if (navToggle) {
   navToggle.addEventListener('click', () => {
     const isOpen = navLinks.classList.toggle('open');
+    navToggle.classList.toggle('open', isOpen);
     navToggle.setAttribute('aria-expanded', isOpen);
     navToggle.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
     if (navOverlay) navOverlay.classList.toggle('open');
@@ -40,6 +41,7 @@ if (navToggle) {
 if (navOverlay) {
   navOverlay.addEventListener('click', () => {
     navLinks.classList.remove('open');
+    navToggle.classList.remove('open');
     navToggle.setAttribute('aria-expanded', 'false');
     navToggle.setAttribute('aria-label', 'Open menu');
     navOverlay.classList.remove('open');
@@ -51,6 +53,7 @@ if (navLinks) {
     a.addEventListener('click', () => {
       navLinks.classList.remove('open');
       if (navToggle) {
+        navToggle.classList.remove('open');
         navToggle.setAttribute('aria-expanded', 'false');
         navToggle.setAttribute('aria-label', 'Open menu');
       }

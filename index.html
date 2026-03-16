@@ -80,6 +80,28 @@
 }
 .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; }
 
+/* Hero entrance choreography */
+@keyframes hero-enter {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.hero .hero-label {
+  opacity: 0;
+  animation: hero-enter 0.8s var(--ease-out) 0.1s forwards;
+}
+.hero .hero-heading {
+  opacity: 0;
+  animation: hero-enter 0.9s var(--ease-out) 0.2s forwards;
+}
+.hero .hero-sub {
+  opacity: 0;
+  animation: hero-enter 0.9s var(--ease-out) 0.35s forwards;
+}
+.hero .hero-btns {
+  opacity: 0;
+  animation: hero-enter 0.8s var(--ease-out) 0.5s forwards;
+}
+
 /* Flywheel visual */
 .flywheel-section { position: relative; }
 .flywheel-wrap {
@@ -296,13 +318,13 @@
   <div class="hero-grid"></div>
   <div class="container">
     <div class="hero-label">World Automotive Group</div>
-    <h1 class="hero-heading reveal">
+    <h1 class="hero-heading">
       Building the Technology Backbone of the <em>Automotive Economy</em>
     </h1>
-    <p class="hero-sub reveal reveal-delay-1">
+    <p class="hero-sub">
       Proprietary data, AI, and integrated software combined with a venture-studio model &mdash; launching, scaling, and compounding automotive businesses across MENA and North America.
     </p>
-    <div class="hero-btns reveal reveal-delay-2">
+    <div class="hero-btns">
       <a href="contact.html" class="btn-primary">
         Partner With Us
         <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
