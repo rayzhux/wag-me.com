@@ -35,6 +35,7 @@
 <meta name="twitter:image" content="https://worldauto.group/og-image.png">
 </head>
 <body>
+<a href="#main" class="skip-link">Skip to content</a>
 
 <!-- Navigation -->
 <div class="scroll-progress" id="scrollProgress"></div>
@@ -43,14 +44,14 @@
     <a href="index.html" class="nav-logo">
       <img src="wag-logo.svg" alt="World Automotive Group" class="nav-logo-img">
     </a>
-    <button class="nav-toggle" id="navToggle"><span></span><span></span><span></span></button>
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
     <div class="nav-links" id="navLinks">
       <a href="index.html">Home</a>
       <a href="about.html">Story</a>
       <a href="aftermarket.html">Aftermarket</a>
       <a href="data-software.html">Data &amp; Software</a>
       <div class="nav-dropdown">
-        <button class="nav-dropdown-toggle">Verticals <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <button class="nav-dropdown-toggle" aria-haspopup="true" aria-expanded="false">Verticals <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
         <div class="nav-dropdown-menu">
           <a href="aftermarket.html">Aftermarket</a>
           <a href="data-software.html">Data &amp; Software</a>
@@ -66,6 +67,7 @@
   </div>
 </nav>
 <div class="nav-overlay" id="navOverlay"></div>
+<main id="main">
 
 <!-- Page Hero -->
 <section class="page-hero">
@@ -152,6 +154,7 @@
 </section>
 
 <!-- Footer -->
+</main>
 <footer class="footer">
   <div class="container">
     <div class="footer-grid">

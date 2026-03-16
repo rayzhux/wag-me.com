@@ -37,11 +37,12 @@
   font-size: 15px;
   color: var(--coal);
   background: var(--white);
-  transition: border-color 0.3s;
-  outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
 }
-.contact-form input:focus, .contact-form select:focus, .contact-form textarea:focus {
+.contact-form input:focus-visible, .contact-form select:focus-visible, .contact-form textarea:focus-visible {
   border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(192, 154, 83, 0.2);
+  outline: none;
 }
 .contact-form label {
   display: block;
@@ -196,6 +197,7 @@
 </script>
 </head>
 <body>
+<a href="#main" class="skip-link">Skip to content</a>
 
 <!-- ═══════ NAVIGATION ═══════ -->
 <div class="scroll-progress" id="scrollProgress"></div>
@@ -204,14 +206,14 @@
     <a href="index.html" class="nav-logo">
       <img src="wag-logo.svg" alt="World Automotive Group" class="nav-logo-img">
     </a>
-    <button class="nav-toggle" id="navToggle"><span></span><span></span><span></span></button>
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
     <div class="nav-links" id="navLinks">
       <a href="index.html">Home</a>
       <a href="about.html">Story</a>
       <a href="aftermarket.html">Aftermarket</a>
       <a href="data-software.html">Data &amp; Software</a>
       <div class="nav-dropdown">
-        <button class="nav-dropdown-toggle">Verticals <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <button class="nav-dropdown-toggle" aria-haspopup="true" aria-expanded="false">Verticals <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
         <div class="nav-dropdown-menu">
           <a href="aftermarket.html">Aftermarket</a>
           <a href="data-software.html">Data &amp; Software</a>
@@ -227,6 +229,7 @@
   </div>
 </nav>
 <div class="nav-overlay" id="navOverlay"></div>
+<main id="main">
 
 <!-- ═══════ PAGE HERO ═══════ -->
 <section class="page-hero" style="padding-bottom:40px;">
@@ -331,6 +334,7 @@
 <section style="position:relative;height:400px;overflow:hidden;">
   <iframe
     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3631.1!2d54.325!3d24.502!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5e440f8b5c0b3d%3A0x2c3b8e7d7f2b2b2b!2sADGM%20Square%2C%20Abu%20Dhabi!5e0!3m2!1sen!2sae!4v1710000000000!5m2!1sen!2sae"
+    title="WAG Headquarters - ADGM Square, Abu Dhabi"
     width="100%" height="100%" style="border:0;filter:grayscale(1) contrast(1.1) brightness(0.7);" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
   </iframe>
   <div style="position:absolute;inset:0;background:linear-gradient(to bottom, var(--coal) 0%, transparent 30%, transparent 70%, var(--white) 100%);pointer-events:none;"></div>
@@ -394,6 +398,7 @@
 </section>
 
 <!-- ═══════ FOOTER ═══════ -->
+</main>
 <footer class="footer">
   <div class="container">
     <div class="footer-grid">
