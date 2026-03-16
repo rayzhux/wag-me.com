@@ -378,32 +378,32 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   visibility: visible;
   transform: translateY(0);
 }
-.nav-dropdown-menu a {
+.nav-links .nav-dropdown-menu a {
   display: block;
-  padding: 10px 20px !important;
-  font-size: 14px !important;
-  color: rgba(255,255,255,0.6) !important;
-  transition: background 0.2s, color 0.2s !important;
+  padding: 10px 20px;
+  font-size: 14px;
+  color: rgba(255,255,255,0.6);
+  transition: background 0.2s, color 0.2s;
   white-space: nowrap;
 }
-.nav-dropdown-menu a:hover {
-  background: rgba(192, 154, 83, 0.08) !important;
-  color: var(--white) !important;
+.nav-links .nav-dropdown-menu a:hover {
+  background: rgba(192, 154, 83, 0.08);
+  color: var(--white);
 }
-.nav-dropdown-menu a::after { display: none !important; }
+.nav-links .nav-dropdown-menu a::after { display: none; }
 
-.nav-cta {
+.nav-links a.nav-cta {
   margin-left: 12px;
-  padding: 10px 22px !important;
+  padding: 10px 22px;
   background: var(--gold);
-  color: var(--coal) !important;
-  font-size: 14px !important;
-  font-weight: 500 !important;
+  color: var(--coal);
+  font-size: 14px;
+  font-weight: 500;
   border-radius: 4px;
-  transition: background 0.3s, transform 0.2s !important;
+  transition: background 0.3s, transform 0.2s;
 }
-.nav-cta:hover { background: var(--gold-light); transform: translateY(-1px); }
-.nav-cta::after { display: none !important; }
+.nav-links a.nav-cta:hover { background: var(--gold-light); transform: translateY(-1px); }
+.nav-links a.nav-cta::after { display: none; }
 
 /* Mobile nav */
 .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
@@ -438,7 +438,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   }
   .nav-links.open { right: 0; }
   .nav-links a { font-size: 18px; padding: 12px 0; color: rgba(255,255,255,0.6); }
-  .nav-cta { margin-left: 0 !important; margin-top: 16px; text-align: center; display: block; }
+  .nav-links a.nav-cta { margin-left: 0; margin-top: 16px; text-align: center; display: block; }
   .nav-dropdown-toggle { font-size: 18px; padding: 12px 0; }
   .nav-dropdown-menu {
     position: static;
@@ -453,7 +453,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
     display: none;
   }
   .nav-dropdown.open .nav-dropdown-menu { display: block; }
-  .nav-dropdown-menu a { padding: 8px 0 !important; font-size: 16px !important; }
+  .nav-links .nav-dropdown-menu a { padding: 8px 0; font-size: 16px; }
 }
 
 /* ═══════ SCROLL PROGRESS ═══════ */
