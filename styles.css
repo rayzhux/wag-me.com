@@ -48,6 +48,16 @@
 
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+  /* Spacing scale */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  --space-3xl: 64px;
+  --space-4xl: 96px;
 }
 
 html {
@@ -820,8 +830,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 
 /* ═══════ MISC ═══════ */
 .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 5vw, 80px); align-items: start; }
-.three-col { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-.four-col { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+.three-col { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(20px, 3vw, 32px); }
+.four-col { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(20px, 3vw, 32px); }
 
 /* Vertical cards */
 .vertical-card {
@@ -1025,3 +1035,64 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .feature-icon.light { background: rgba(192, 154, 83, 0.08); }
 .feature-title { font-size: 15px; font-weight: 600; color: var(--coal); margin-bottom: 4px; }
 .feature-desc { font-size: 14px; color: var(--slate); font-weight: 300; line-height: 1.6; }
+
+/* ═══════ LAYOUT REFINEMENTS ═══════ */
+
+/* Stats strip — breathing room around the proof bar */
+.stats-strip { padding: clamp(32px, 5vh, 56px) 0; }
+
+/* Verticals grid — 2x2 for more generous card spacing */
+.verticals-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(20px, 3vw, 32px);
+}
+.verticals-grid .vertical-card.featured {
+  border-color: rgba(192, 154, 83, 0.25);
+}
+.verticals-grid .vertical-card.featured .vertical-icon {
+  background: rgba(192, 154, 83, 0.12);
+}
+@media (max-width: 600px) {
+  .verticals-grid { grid-template-columns: 1fr; }
+}
+
+/* Section header — left-aligned variant to break centered monotony */
+.section-header-left { margin-bottom: clamp(40px, 6vw, 64px); }
+.section-header-left .section-subhead { margin-bottom: 0; }
+
+/* Section header — centered variant with tighter bottom margin */
+.section-header-center {
+  text-align: center;
+  margin-bottom: clamp(40px, 6vw, 64px);
+}
+.section-header-center .section-subhead { margin: 0 auto; }
+
+/* Venture studio mini-stats */
+.mini-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(16px, 2vw, 20px);
+}
+.mini-stat {
+  padding: clamp(24px, 3vw, 32px);
+  border: 1px solid var(--pearl);
+  border-radius: 8px;
+}
+.mini-stat-num {
+  font-family: var(--font-display);
+  font-size: clamp(24px, 3vw, 32px);
+  color: var(--gold);
+  margin-bottom: var(--space-xs);
+}
+.mini-stat-label {
+  font-size: 13px;
+  color: var(--slate);
+  font-weight: 300;
+}
+
+/* CTA section — more vertical breathing room */
+.section-footer-action {
+  text-align: center;
+  margin-top: clamp(32px, 5vw, 48px);
+}
