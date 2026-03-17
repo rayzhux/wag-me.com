@@ -223,6 +223,110 @@
 @media (max-width: 900px) {
   .flywheel { grid-template-columns: 1fr; }
 }
+
+/* ═══════ CANVAS NETWORK (Part A) ═══════ */
+.hero-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+/* When canvas is active, hide the static CSS grid fallback */
+.hero.has-canvas .hero-grid { opacity: 0; }
+
+/* ═══════ SCROLL-DRIVEN ANIMATIONS (Part B) ═══════ */
+
+/* Flywheel rotation keyframes */
+@keyframes flywheel-rotate {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(100deg); }
+}
+/* Dashed line pulse */
+@keyframes flywheel-dash-pulse {
+  0%   { opacity: 0.15; }
+  50%  { opacity: 0.6; }
+  100% { opacity: 0.15; }
+}
+/* Hero parallax: content moves faster than background */
+@keyframes hero-parallax-bg {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-20px); }
+}
+@keyframes hero-parallax-heading {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-12px); }
+}
+@keyframes hero-parallax-sub {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-6px); }
+}
+/* Scroll-driven reveal */
+@keyframes scroll-reveal {
+  from { opacity: 0; transform: translateY(32px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Progressive enhancement: scroll-driven animations only */
+@supports (animation-timeline: scroll()) {
+  /* Flywheel spin on scroll */
+  .flywheel-spin {
+    animation: flywheel-rotate linear both;
+    animation-timeline: view();
+    animation-range: entry 0% cover 80%;
+  }
+  /* Dashed lines pulse on scroll */
+  .flywheel-dashes {
+    animation: flywheel-dash-pulse linear both;
+    animation-timeline: view();
+    animation-range: entry 0% cover 80%;
+  }
+
+  /* Hero parallax — canvas/grid background lags behind scroll */
+  .hero-canvas,
+  .hero-grid {
+    animation: hero-parallax-bg linear both;
+    animation-timeline: scroll();
+    animation-range: 0vh 100vh;
+  }
+  /* Heading parallax — slightly different rate */
+  .hero .hero-heading {
+    animation: hero-enter 0.9s var(--ease-out) 0.2s forwards,
+               hero-parallax-heading linear both;
+    animation-timeline: auto, scroll();
+    animation-range: normal, 0vh 100vh;
+  }
+  /* Subtext parallax — even subtler */
+  .hero .hero-sub {
+    animation: hero-enter 0.9s var(--ease-out) 0.35s forwards,
+               hero-parallax-sub linear both;
+    animation-timeline: auto, scroll();
+    animation-range: normal, 0vh 100vh;
+  }
+
+  /* Enhanced scroll-driven reveal for .reveal elements */
+  .reveal {
+    animation: scroll-reveal linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 100%;
+    /* Override the JS-driven transition approach */
+    transition: none;
+  }
+  .reveal.visible {
+    /* Let scroll-driven animation take over */
+    animation: scroll-reveal linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 100%;
+  }
+}
+
+/* Reduced motion: disable canvas animations and scroll-driven effects */
+@media (prefers-reduced-motion: reduce) {
+  .hero-canvas { display: none; }
+  .flywheel-spin { animation: none !important; }
+  .flywheel-dashes { animation: none !important; }
+}
 </style>
 
 <!-- Open Graph / Social -->
@@ -320,7 +424,8 @@
 <main id="main">
 
 <!-- ═══════ HERO ═══════ -->
-<section class="hero">
+<section class="hero" id="hero">
+  <canvas id="heroCanvas" class="hero-canvas" aria-hidden="true"></canvas>
   <div class="hero-grid"></div>
   <div class="container">
     <div class="hero-label">World Automotive Group</div>
@@ -389,21 +494,24 @@
         <div style="padding: 32px; background: var(--pearl); border-radius: 16px; text-align: center;">
           <div style="font-family: var(--font-display); font-size: 14px; font-weight: 600; color: var(--slate); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 20px;">The WAG Flywheel</div>
           <svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 100%; max-width: 360px; margin: 0 auto; display: block;">
-            <!-- Outer ring -->
-            <circle cx="200" cy="200" r="170" stroke="#C09A53" stroke-width="1.5" opacity="0.2"/>
-            <circle cx="200" cy="200" r="130" stroke="#C09A53" stroke-width="1" opacity="0.1"/>
+            <!-- Flywheel spin group: arcs + arrows rotate on scroll -->
+            <g class="flywheel-spin" style="transform-origin: 200px 200px;">
+              <!-- Outer ring -->
+              <circle cx="200" cy="200" r="170" stroke="#C09A53" stroke-width="1.5" opacity="0.2"/>
+              <circle cx="200" cy="200" r="130" stroke="#C09A53" stroke-width="1" opacity="0.1"/>
 
-            <!-- Curved arrows (flywheel motion) -->
-            <path d="M200 30 A170 170 0 0 1 370 200" stroke="#C09A53" stroke-width="2" fill="none" opacity="0.35" stroke-linecap="round"/>
-            <path d="M370 200 A170 170 0 0 1 200 370" stroke="#C09A53" stroke-width="2" fill="none" opacity="0.35" stroke-linecap="round"/>
-            <path d="M200 370 A170 170 0 0 1 30 200" stroke="#C09A53" stroke-width="2" fill="none" opacity="0.35" stroke-linecap="round"/>
-            <path d="M30 200 A170 170 0 0 1 200 30" stroke="#C09A53" stroke-width="2" fill="none" opacity="0.35" stroke-linecap="round"/>
+              <!-- Curved arrows (flywheel motion) -->
+              <path d="M200 30 A170 170 0 0 1 370 200" stroke="#C09A53" stroke-width="2" fill="none" opacity="0.35" stroke-linecap="round"/>
+              <path d="M370 200 A170 170 0 0 1 200 370" stroke="#C09A53" stroke-width="2" fill="none" opacity="0.35" stroke-linecap="round"/>
+              <path d="M200 370 A170 170 0 0 1 30 200" stroke="#C09A53" stroke-width="2" fill="none" opacity="0.35" stroke-linecap="round"/>
+              <path d="M30 200 A170 170 0 0 1 200 30" stroke="#C09A53" stroke-width="2" fill="none" opacity="0.35" stroke-linecap="round"/>
 
-            <!-- Arrow heads -->
-            <polygon points="365,188 375,200 355,200" fill="#C09A53" opacity="0.5"/>
-            <polygon points="212,365 200,375 200,355" fill="#C09A53" opacity="0.5"/>
-            <polygon points="35,212 25,200 45,200" fill="#C09A53" opacity="0.5"/>
-            <polygon points="188,35 200,25 200,45" fill="#C09A53" opacity="0.5"/>
+              <!-- Arrow heads -->
+              <polygon points="365,188 375,200 355,200" fill="#C09A53" opacity="0.5"/>
+              <polygon points="212,365 200,375 200,355" fill="#C09A53" opacity="0.5"/>
+              <polygon points="35,212 25,200 45,200" fill="#C09A53" opacity="0.5"/>
+              <polygon points="188,35 200,25 200,45" fill="#C09A53" opacity="0.5"/>
+            </g>
 
             <!-- Center WAG hub -->
             <circle cx="200" cy="200" r="48" fill="#0B1215"/>
@@ -430,11 +538,13 @@
             <circle cx="52" cy="200" r="36" fill="#fff" stroke="#C09A53" stroke-width="1.5"/>
             <text x="52" y="204" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="10" font-weight="600" fill="#0B1215">Consulting</text>
 
-            <!-- Connection lines to center -->
-            <line x1="200" y1="88" x2="200" y2="152" stroke="#C09A53" stroke-width="1" opacity="0.3" stroke-dasharray="4 3"/>
-            <line x1="312" y1="200" x2="248" y2="200" stroke="#C09A53" stroke-width="1" opacity="0.3" stroke-dasharray="4 3"/>
-            <line x1="200" y1="312" x2="200" y2="248" stroke="#C09A53" stroke-width="1" opacity="0.3" stroke-dasharray="4 3"/>
-            <line x1="88" y1="200" x2="152" y2="200" stroke="#C09A53" stroke-width="1" opacity="0.3" stroke-dasharray="4 3"/>
+            <!-- Connection lines to center (pulse opacity on scroll) -->
+            <g class="flywheel-dashes">
+              <line x1="200" y1="88" x2="200" y2="152" stroke="#C09A53" stroke-width="1" opacity="0.3" stroke-dasharray="4 3"/>
+              <line x1="312" y1="200" x2="248" y2="200" stroke="#C09A53" stroke-width="1" opacity="0.3" stroke-dasharray="4 3"/>
+              <line x1="200" y1="312" x2="200" y2="248" stroke="#C09A53" stroke-width="1" opacity="0.3" stroke-dasharray="4 3"/>
+              <line x1="88" y1="200" x2="152" y2="200" stroke="#C09A53" stroke-width="1" opacity="0.3" stroke-dasharray="4 3"/>
+            </g>
 
             <!-- Flow labels along arcs -->
             <text x="290" y="100" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="8" fill="#8B9DAF" transform="rotate(0)">Data</text>
@@ -738,6 +848,168 @@
 </footer>
 
 <script defer src="script.js"></script>
+
+<!-- ═══════ CANVAS PARTICLE NETWORK (Part A) ═══════ -->
+<script>
+(function() {
+  'use strict';
+
+  /* ── Tunables ──────────────────────────────────── */
+  var PARTICLE_COUNT   = 70;        // 60-80 gold dots
+  var MIN_RADIUS       = 1;
+  var MAX_RADIUS       = 2.5;
+  var CONNECT_DIST     = 120;       // px — max line distance
+  var MOUSE_RADIUS     = 150;       // px — gravitational pull radius
+  var MOUSE_STRENGTH   = 0.012;     // gentle pull
+  var DRIFT_SPEED      = 0.25;      // base drift speed
+  var SCROLL_SPREAD    = 0.15;      // particles spread with scroll
+  var GOLD_R = 192, GOLD_G = 154, GOLD_B = 83;
+
+  /* ── State ─────────────────────────────────────── */
+  var canvas  = document.getElementById('heroCanvas');
+  if (!canvas) return;
+
+  var hero    = document.getElementById('hero');
+  var ctx     = canvas.getContext('2d');
+  var W, H;
+  var particles = [];
+  var mouse   = { x: -9999, y: -9999 };
+  var running = true;
+  var scrollY = 0;
+  var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // If reduced motion, don't initialize canvas at all
+  if (reducedMotion) return;
+
+  // Mark hero as having canvas (hides CSS grid fallback)
+  hero.classList.add('has-canvas');
+
+  /* ── Resize ────────────────────────────────────── */
+  function resize() {
+    var rect = hero.getBoundingClientRect();
+    W = canvas.width  = rect.width;
+    H = canvas.height = rect.height;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  /* ── Create particles ──────────────────────────── */
+  function createParticle() {
+    return {
+      x:  Math.random() * W,
+      y:  Math.random() * H,
+      vx: (Math.random() - 0.5) * DRIFT_SPEED,
+      vy: (Math.random() - 0.5) * DRIFT_SPEED,
+      r:  MIN_RADIUS + Math.random() * (MAX_RADIUS - MIN_RADIUS),
+      a:  0.3 + Math.random() * 0.3  // opacity 0.3–0.6
+    };
+  }
+  for (var i = 0; i < PARTICLE_COUNT; i++) {
+    particles.push(createParticle());
+  }
+
+  /* ── Mouse tracking (relative to hero) ─────────── */
+  hero.addEventListener('mousemove', function(e) {
+    var rect = hero.getBoundingClientRect();
+    mouse.x = e.clientX - rect.left;
+    mouse.y = e.clientY - rect.top;
+  });
+  hero.addEventListener('mouseleave', function() {
+    mouse.x = -9999;
+    mouse.y = -9999;
+  });
+  // Enable pointer events on hero but keep canvas pointer-events:none
+  // Mouse events bubble through canvas to hero
+
+  /* ── Scroll tracking ───────────────────────────── */
+  window.addEventListener('scroll', function() {
+    scrollY = window.scrollY || window.pageYOffset;
+  }, { passive: true });
+
+  /* ── Visibility: pause when hero off-screen ────── */
+  var visObserver = new IntersectionObserver(function(entries) {
+    running = entries[0].isIntersecting;
+    if (running) requestAnimationFrame(loop);
+  }, { threshold: 0 });
+  visObserver.observe(hero);
+
+  /* ── Animation loop ────────────────────────────── */
+  function loop() {
+    if (!running) return;
+
+    ctx.clearRect(0, 0, W, H);
+
+    // Scroll-based connection distance increase
+    var scrollFactor = Math.min(scrollY / (H || 1), 1);
+    var connectDist  = CONNECT_DIST + scrollFactor * CONNECT_DIST * SCROLL_SPREAD;
+    var connectDist2 = connectDist * connectDist;
+
+    // Update particles
+    for (var i = 0; i < particles.length; i++) {
+      var p = particles[i];
+
+      // Mouse gravitational pull
+      var dx = mouse.x - p.x;
+      var dy = mouse.y - p.y;
+      var dist = Math.sqrt(dx * dx + dy * dy);
+      if (dist < MOUSE_RADIUS && dist > 0) {
+        var force = (1 - dist / MOUSE_RADIUS) * MOUSE_STRENGTH;
+        p.vx += dx / dist * force;
+        p.vy += dy / dist * force;
+      }
+
+      // Scroll-driven vertical drift offset (parallax feel)
+      p.vy += scrollFactor * 0.002;
+
+      // Dampen velocity
+      p.vx *= 0.995;
+      p.vy *= 0.995;
+
+      // Move
+      p.x += p.vx;
+      p.y += p.vy;
+
+      // Wrap around edges
+      if (p.x < -10) p.x = W + 10;
+      if (p.x > W + 10) p.x = -10;
+      if (p.y < -10) p.y = H + 10;
+      if (p.y > H + 10) p.y = -10;
+    }
+
+    // Draw connections
+    for (var i = 0; i < particles.length; i++) {
+      for (var j = i + 1; j < particles.length; j++) {
+        var dx = particles[i].x - particles[j].x;
+        var dy = particles[i].y - particles[j].y;
+        var d2 = dx * dx + dy * dy;
+        if (d2 < connectDist2) {
+          var d = Math.sqrt(d2);
+          var alpha = (1 - d / connectDist) * 0.15;
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.strokeStyle = 'rgba(' + GOLD_R + ',' + GOLD_G + ',' + GOLD_B + ',' + alpha + ')';
+          ctx.lineWidth = 0.5;
+          ctx.stroke();
+        }
+      }
+    }
+
+    // Draw particles
+    for (var i = 0; i < particles.length; i++) {
+      var p = particles[i];
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(' + GOLD_R + ',' + GOLD_G + ',' + GOLD_B + ',' + p.a + ')';
+      ctx.fill();
+    }
+
+    requestAnimationFrame(loop);
+  }
+
+  requestAnimationFrame(loop);
+})();
+</script>
 
 <!-- Vercel Analytics -->
 <script>
